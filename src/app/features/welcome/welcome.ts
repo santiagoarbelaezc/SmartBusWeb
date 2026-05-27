@@ -14,13 +14,12 @@ export class Welcome {
 
   navigateToLogin() {
     console.log('Login clicked');
-    // Implement auth later, just go to home for now to test flow
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
   navigateToRegister() {
     console.log('Register clicked');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/register']);
   }
 
   googleSignIn() {
