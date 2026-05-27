@@ -1,38 +1,46 @@
 <div class="w-full h-full bg-white flex flex-col overflow-hidden pb-20">
   
   <!-- Top App Bar -->
-  <div class="w-full bg-white pt-10 pb-4 px-6 flex items-center justify-center relative">
-    <h1 class="text-neutral-black text-lg font-bold">SmartPoints</h1>
+  <div class="w-full bg-brand-primary pt-10 pb-4 px-6 flex items-center justify-center relative border-b border-brand-primary-dark/30">
+    <h1 class="text-white text-lg font-bold">SmartPoints</h1>
   </div>
 
   <!-- Content -->
   <div class="flex-1 overflow-y-auto px-6 py-4">
     
     <!-- Points Card -->
-    <div class="w-full h-[180px] bg-brand-primary rounded-[24px] relative overflow-hidden flex flex-col justify-end p-6 shadow-md">
-      <span class="material-icons absolute right-[-20px] top-[10%] text-[120px] text-neutral-black/10">stars</span>
+    <div class="w-full h-[190px] bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A] rounded-[24px] relative overflow-hidden flex flex-col justify-end p-6 shadow-xl border border-white/10">
+      <span class="material-icons absolute right-[-10px] top-[10%] text-[140px] text-brand-accent/5">stars</span>
       
-      <span class="text-neutral-black font-black text-5xl z-10">{{ totalPoints | number }}</span>
-      <span class="text-neutral-black/70 font-medium text-sm z-10 mt-1">SmartPoints acumulados</span>
+      <div class="absolute top-5 left-6 bg-brand-accent/15 px-3 py-1 rounded-full border border-brand-accent/30 flex items-center gap-1.5 z-10">
+        <span class="material-icons text-brand-accent text-sm">workspace_premium</span>
+        <span class="text-brand-accent font-extrabold text-xs tracking-wide">Nivel Oro</span>
+      </div>
+      
+      <span class="text-white font-black text-[52px] leading-none z-10 drop-shadow-md">{{ totalPoints | number }}</span>
+      <span class="text-brand-accent/80 font-semibold text-sm z-10 mt-2">SmartPoints acumulados</span>
     </div>
 
     <!-- Progress -->
-    <div class="mt-6">
-      <span class="text-neutral-black font-bold text-base">Hacia el nivel Platinum</span>
-      
-      <div class="w-full h-2 bg-brand-primary/20 rounded-full mt-2 overflow-hidden">
-        <div class="h-full bg-brand-primary rounded-full transition-all duration-1000" [style.width]="(progress * 100) + '%'"></div>
+    <div class="mt-8">
+      <div class="flex justify-between items-end mb-2">
+        <span class="text-neutral-black font-extrabold text-[15px]">Hacia el nivel Platinum</span>
+        <span class="text-brand-accent font-black text-sm">85%</span>
       </div>
       
-      <span class="text-gray-500 text-xs mt-2 block">Te faltan {{ pointsToNextLevel }} puntos para tu próximo viaje gratis</span>
+      <div class="w-full h-3 bg-gray-100 rounded-full overflow-hidden shadow-inner border border-gray-200">
+        <div class="h-full bg-brand-accent rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(232,160,32,0.5)]" [style.width]="(progress * 100) + '%'"></div>
+      </div>
+      
+      <span class="text-gray-500 text-xs mt-2.5 block font-medium">Te faltan <strong class="text-neutral-black font-bold">{{ pointsToNextLevel }} puntos</strong> para tu próximo viaje gratis</span>
     </div>
 
     <!-- Benefits -->
     <div class="mt-10">
       <h2 class="text-neutral-black font-bold text-lg mb-4">Beneficios de nivel</h2>
       
-      <div *ngFor="let benefit of benefits" class="w-full bg-brand-primary-dark/5 rounded-2xl p-4 flex items-center gap-3 mb-3">
-        <span class="material-icons text-brand-primary text-xl">stars</span>
+      <div *ngFor="let benefit of benefits" class="w-full bg-brand-accent/5 border border-brand-accent/20 rounded-2xl p-4 flex items-center gap-3 mb-3">
+        <span class="material-icons text-brand-accent text-xl">stars</span>
         <span class="text-neutral-black font-medium text-sm">{{ benefit }}</span>
       </div>
     </div>

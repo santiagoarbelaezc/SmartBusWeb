@@ -9,7 +9,7 @@
     
     <div class="flex items-center gap-2">
       <!-- NFC Button -->
-      <button (click)="navigateTo('/nfc')" class="h-9 px-3 rounded-full bg-brand-primary-dark flex items-center justify-center shadow-sm active:scale-95 transition-transform gap-1.5 border border-brand-primary/30">
+      <button (click)="navigateTo('/nfc')" class="h-9 px-3 rounded-full bg-[#0A0A0A] flex items-center justify-center shadow-sm active:scale-95 transition-transform gap-1.5 border border-[#1A1A1A]">
         <span class="material-icons text-brand-accent text-[18px] animate-pulse">contactless</span>
         <span class="text-brand-accent font-medium text-[10px] tracking-wider">NFC</span>
       </button>
@@ -35,10 +35,10 @@
 
       <!-- 1. Search Bar -->
       <div class="px-6">
-        <div (click)="navigateTo('/search')" class="w-full bg-brand-primary-dark rounded-[18px] p-4 flex items-center justify-between shadow-lg cursor-pointer transform transition-transform active:scale-95">
+        <div (click)="navigateTo('/search')" class="w-full bg-[#0A0A0A] rounded-[18px] p-4 flex items-center justify-between shadow-lg cursor-pointer transform transition-transform active:scale-95">
           <div class="flex items-center gap-3.5">
-            <div class="w-10 h-10 rounded-xl bg-brand-primary/15 flex items-center justify-center">
-              <span class="material-icons text-brand-primary text-xl">search</span>
+            <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
+              <span class="material-icons text-brand-accent text-xl">search</span>
             </div>
             <div class="flex flex-col">
               <span class="text-white font-semibold text-[15px]">¿A dónde vas hoy?</span>
@@ -52,7 +52,7 @@
       <!-- 2. Quick Access -->
       <div class="px-6 flex justify-between">
         <div *ngFor="let item of quickAccess" (click)="navigateTo(item.route)" class="flex flex-col items-center gap-1.5 cursor-pointer transform transition-transform active:scale-90">
-          <div class="w-14 h-14 rounded-[18px] bg-gradient-to-b from-neutral-charcoal to-neutral-black flex items-center justify-center shadow-md">
+          <div class="w-14 h-14 rounded-[18px] bg-brand-primary flex items-center justify-center shadow-md">
             <span class="material-icons text-white text-2xl">{{ item.icon }}</span>
           </div>
           <span class="text-neutral-black text-[11px] font-medium w-full text-center truncate px-1">{{ item.label }}</span>
@@ -83,7 +83,7 @@
               <span class="text-white/50 text-[11px]">Llegada estimada</span>
               <span class="text-white font-medium text-[15px]">03:15 PM</span>
             </div>
-            <button class="bg-brand-primary-dark px-4 py-2 rounded-xl text-white font-semibold text-xs shadow-md active:scale-95 transition-transform">
+            <button class="bg-brand-accent px-4 py-2 rounded-xl text-black font-semibold text-xs shadow-md shadow-brand-accent/30 active:scale-95 transition-transform">
               Sigue tu bus
             </button>
           </div>
@@ -94,7 +94,7 @@
       <div class="px-6">
         <div class="w-full bg-gradient-to-r from-brand-primary to-brand-primary-dark rounded-[20px] py-5 flex justify-evenly shadow-lg">
           <div *ngFor="let stat of stats" class="flex flex-col items-center">
-            <span class="material-icons text-brand-primary-lightest text-xl mb-1">{{ stat.icon }}</span>
+            <span class="material-icons text-brand-accent text-xl mb-1">{{ stat.icon }}</span>
             <span class="text-white font-semibold text-base">{{ stat.value }}</span>
             <span class="text-white/65 font-medium text-[10px]">{{ stat.label }}</span>
           </div>
@@ -122,13 +122,13 @@
       <div class="flex flex-col gap-3">
         <div class="px-6 flex justify-between items-center">
           <h2 class="text-neutral-black font-medium text-lg">Rutas Disponibles</h2>
-          <span (click)="navigateTo('/search')" class="text-brand-primary-dark text-xs font-medium cursor-pointer">Ver todas</span>
+          <span (click)="navigateTo('/search')" class="text-neutral-black text-xs font-bold cursor-pointer">Ver todas</span>
         </div>
         <!-- Filters -->
         <div class="flex overflow-x-auto hide-scrollbar px-6 gap-2">
           <button *ngFor="let filter of filters" 
             (click)="selectedFilter = filter"
-            [ngClass]="{'bg-brand-primary-dark text-brand-primary font-semibold': selectedFilter === filter, 'bg-[#F0F0F0] text-gray-500': selectedFilter !== filter}"
+            [ngClass]="{'bg-neutral-black text-white font-semibold': selectedFilter === filter, 'bg-[#F0F0F0] text-gray-500': selectedFilter !== filter}"
             class="px-4 py-2 rounded-full text-[13px] whitespace-nowrap transition-colors">
             {{ filter }}
           </button>
@@ -143,7 +143,7 @@
             </div>
             <div class="flex items-center gap-3 mt-2">
               <span class="text-neutral-black font-medium text-lg">{{ r.origin }}</span>
-              <span class="material-icons text-brand-primary text-sm">arrow_forward</span>
+              <span class="material-icons text-neutral-black text-sm">arrow_forward</span>
               <span class="text-neutral-black font-medium text-lg">{{ r.destination }}</span>
             </div>
             <div class="w-full flex justify-between items-end mt-3">
@@ -151,7 +151,7 @@
                 <span class="text-[10px] text-gray-400">Salida</span>
                 <span class="text-sm font-semibold text-neutral-black">{{ r.time }}</span>
               </div>
-              <span class="text-brand-primary font-black text-xl">{{ r.price }}</span>
+              <span class="text-neutral-black font-black text-xl">{{ r.price }}</span>
             </div>
           </div>
         </div>

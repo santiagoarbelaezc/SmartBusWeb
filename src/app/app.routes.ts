@@ -15,6 +15,7 @@ export const routes: Routes = [
       { path: 'search', loadComponent: () => import('./features/search/search').then(m => m.Search) },
       { path: 'tickets', loadComponent: () => import('./features/tickets/tickets').then(m => m.Tickets) },
       { path: 'points', loadComponent: () => import('./features/points/points').then(m => m.Points) },
+      { path: 'tracking', loadComponent: () => import('./features/tracking/tracking').then(m => m.Tracking) },
       { path: 'profile', loadComponent: () => import('./features/profile/profile').then(m => m.Profile) },
     ]
   },

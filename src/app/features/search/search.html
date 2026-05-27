@@ -7,76 +7,70 @@
     </button>
     <div class="flex flex-col">
       <span class="text-white font-extrabold text-lg leading-tight">Buscar Viaje</span>
-      <span class="text-brand-primary text-[11px] font-medium leading-tight">Armenia • Quindío</span>
+      <span class="text-white/60 text-[11px] font-medium leading-tight">Armenia • Quindío</span>
     </div>
   </div>
 
   <div class="flex-1 overflow-y-auto relative">
     
     <!-- Hero / Search Form section -->
-    <div class="w-full bg-brand-primary-dark px-5 pt-2 pb-8 rounded-b-3xl relative z-10">
+    <div class="w-full bg-brand-primary-dark px-5 pt-2 pb-8 rounded-b-3xl relative z-10 shadow-md">
       <h2 class="text-white font-extrabold text-[28px]">Buscar Ruta</h2>
-      <p class="text-white/60 text-sm font-medium">Encuentra el mejor viaje para ti</p>
+      <p class="text-white/80 text-sm font-medium">Encuentra el mejor viaje para ti</p>
       
-      <div class="w-full bg-brand-primary rounded-[24px] shadow-2xl p-5 mt-6 border border-white/5">
+      <div class="w-full bg-brand-primary rounded-[24px] shadow-2xl p-5 mt-6 border border-white/20">
         
-        <!-- Origen -->
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-            <div class="w-3.5 h-3.5 rounded-full border-[2.5px] border-white/70"></div>
+        <!-- Origen Input Box -->
+        <div class="w-full bg-white/10 rounded-xl border border-white/20 flex items-center p-3 mb-3 backdrop-blur-sm cursor-pointer hover:bg-white/20 transition-colors">
+          <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+            <div class="w-2.5 h-2.5 rounded-full border-[2px] border-white"></div>
           </div>
-          <div class="ml-4 flex flex-col w-full">
-            <span class="text-white/40 text-xs font-medium">Origen</span>
-            <input type="text" placeholder="¿Desde dónde?" [(ngModel)]="origin" class="bg-transparent text-white font-bold text-base outline-none w-full placeholder-white/20">
-          </div>
-        </div>
-        
-        <div class="w-full h-[1px] bg-white/5 my-4"></div>
-        
-        <!-- Destino -->
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center">
-            <span class="material-icons text-brand-accent text-[18px]">location_on</span>
-          </div>
-          <div class="ml-4 flex flex-col w-full">
-            <span class="text-white/40 text-xs font-medium">Destino</span>
-            <input type="text" placeholder="¿Hacia dónde?" [(ngModel)]="destination" class="bg-transparent text-white font-bold text-base outline-none w-full placeholder-white/20">
+          <div class="ml-3 flex flex-col w-full">
+            <span class="text-white/60 text-[10px] font-bold uppercase tracking-wider">Origen</span>
+            <input type="text" placeholder="¿Desde dónde?" [(ngModel)]="origin" class="bg-transparent text-white font-bold text-base outline-none w-full placeholder-white/40 cursor-pointer">
           </div>
         </div>
         
-        <div class="w-full h-[1px] bg-white/5 my-4"></div>
-        
-        <!-- Fecha -->
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-            <span class="material-icons text-white/80 text-[18px]">calendar_today</span>
+        <!-- Destino Input Box -->
+        <div class="w-full bg-white/10 rounded-xl border border-white/20 flex items-center p-3 mb-3 backdrop-blur-sm cursor-pointer hover:bg-white/20 transition-colors">
+          <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center shrink-0">
+            <span class="material-icons text-brand-accent text-[16px]">location_on</span>
           </div>
-          <div class="ml-4 flex flex-col w-full">
-            <span class="text-white/40 text-xs font-medium">Fecha</span>
-            <input type="text" [(ngModel)]="date" readonly class="bg-transparent text-white font-bold text-base outline-none w-full">
+          <div class="ml-3 flex flex-col w-full">
+            <span class="text-white/60 text-[10px] font-bold uppercase tracking-wider">Destino</span>
+            <input type="text" placeholder="¿Hacia dónde?" [(ngModel)]="destination" class="bg-transparent text-white font-bold text-base outline-none w-full placeholder-white/40 cursor-pointer">
           </div>
         </div>
         
-        <div class="w-full h-[1px] bg-[#F0F0F0]/10 my-4"></div>
+        <!-- Fecha Input Box -->
+        <div class="w-full bg-white/10 rounded-xl border border-white/20 flex items-center p-3 mb-4 backdrop-blur-sm cursor-pointer hover:bg-white/20 transition-colors">
+          <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+            <span class="material-icons text-white/80 text-[16px]">calendar_today</span>
+          </div>
+          <div class="ml-3 flex flex-col w-full">
+            <span class="text-white/60 text-[10px] font-bold uppercase tracking-wider">Fecha</span>
+            <input type="text" [(ngModel)]="date" readonly class="bg-transparent text-white font-bold text-base outline-none w-full cursor-pointer">
+          </div>
+        </div>
         
         <!-- Chips -->
         <div class="flex gap-2.5">
-          <div class="flex-1 bg-[#F5F5F5] rounded-[10px] py-2 flex items-center justify-center gap-1.5 border border-[#EEEEEE]">
-            <span class="material-icons text-brand-primary text-[14px]">calendar_today</span>
-            <span class="text-[#555555] font-semibold text-[11px]">Hoy</span>
+          <div class="flex-1 bg-white/10 rounded-xl py-2 flex items-center justify-center gap-1.5 border border-white/20 backdrop-blur-sm cursor-pointer hover:bg-white/20 transition-colors">
+            <span class="material-icons text-brand-accent text-[14px]">calendar_today</span>
+            <span class="text-white font-semibold text-[11px]">Hoy</span>
           </div>
-          <div class="flex-1 bg-[#F5F5F5] rounded-[10px] py-2 flex items-center justify-center gap-1.5 border border-[#EEEEEE]">
-            <span class="material-icons text-brand-primary text-[14px]">group</span>
-            <span class="text-[#555555] font-semibold text-[11px]">1 Persona</span>
+          <div class="flex-1 bg-white/10 rounded-xl py-2 flex items-center justify-center gap-1.5 border border-white/20 backdrop-blur-sm cursor-pointer hover:bg-white/20 transition-colors">
+            <span class="material-icons text-brand-accent text-[14px]">group</span>
+            <span class="text-white font-semibold text-[11px]">1 Persona</span>
           </div>
-          <div class="flex-[1.4] bg-[#F5F5F5] rounded-[10px] py-2 flex items-center justify-center gap-1.5 border border-[#EEEEEE]">
-            <span class="material-icons text-brand-primary text-[14px]">event_seat</span>
-            <span class="text-[#555555] font-semibold text-[11px] truncate px-1">Cualquier...</span>
+          <div class="flex-[1.4] bg-white/10 rounded-xl py-2 flex items-center justify-center gap-1.5 border border-white/20 backdrop-blur-sm cursor-pointer hover:bg-white/20 transition-colors">
+            <span class="material-icons text-brand-accent text-[14px]">event_seat</span>
+            <span class="text-white font-semibold text-[11px] truncate px-1">Cualquier...</span>
           </div>
         </div>
         
         <!-- Button -->
-        <button (click)="doSearch()" class="w-full bg-brand-primary-dark py-4 rounded-xl mt-5 font-black text-white text-[15px] shadow-lg active:scale-95 transition-transform">
+        <button (click)="doSearch()" class="w-full bg-brand-accent py-4 rounded-xl mt-5 font-black text-black text-[15px] shadow-lg shadow-brand-accent/30 active:scale-95 transition-transform">
           Buscar Viajes
         </button>
       </div>
@@ -86,13 +80,13 @@
     <div class="w-full px-5 mt-4 flex gap-2.5">
       <div (click)="selectedTab = 'INTERCITY'" 
            class="flex-1 h-[46px] rounded-[14px] flex items-center justify-center shadow-sm cursor-pointer transition-colors"
-           [ngClass]="selectedTab === 'INTERCITY' ? 'bg-brand-primary-dark' : 'bg-white'">
-        <span [ngClass]="selectedTab === 'INTERCITY' ? 'text-brand-primary font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🚌 Intermunicipales</span>
+           [ngClass]="selectedTab === 'INTERCITY' ? 'bg-[#1A1A1A]' : 'bg-white'">
+        <span [ngClass]="selectedTab === 'INTERCITY' ? 'text-white font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🚌 Intermunicipales</span>
       </div>
       <div (click)="selectedTab = 'URBAN'" 
            class="flex-1 h-[46px] rounded-[14px] flex items-center justify-center shadow-sm cursor-pointer transition-colors"
-           [ngClass]="selectedTab === 'URBAN' ? 'bg-brand-primary-dark' : 'bg-white'">
-        <span [ngClass]="selectedTab === 'URBAN' ? 'text-brand-primary font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🔴 Buses Tinto</span>
+           [ngClass]="selectedTab === 'URBAN' ? 'bg-[#1A1A1A]' : 'bg-white'">
+        <span [ngClass]="selectedTab === 'URBAN' ? 'text-white font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🔴 Buses Tinto</span>
       </div>
     </div>
 
@@ -101,7 +95,7 @@
       <div *ngFor="let filter of filters" 
            (click)="selectedFilter = filter"
            class="rounded-xl px-3.5 py-2 flex items-center whitespace-nowrap cursor-pointer transition-all"
-           [ngClass]="selectedFilter === filter ? 'bg-brand-primary text-neutral-black shadow-sm' : 'bg-white text-gray-500 border border-[#E0E0E0]'">
+           [ngClass]="selectedFilter === filter ? 'bg-brand-primary text-white shadow-sm' : 'bg-white text-gray-500 border border-[#E0E0E0]'">
         <span *ngIf="selectedFilter === filter" class="material-icons text-[14px] mr-1.5">filter_list</span>
         <span class="text-xs" [ngClass]="selectedFilter === filter ? 'font-bold' : 'font-medium'">{{ filter }}</span>
       </div>
@@ -113,7 +107,7 @@
       <div class="w-full flex items-center justify-between mb-3">
         <div class="flex items-center gap-2.5">
           <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-primary to-brand-primary-dark flex items-center justify-center">
-            <span class="material-icons text-neutral-black text-[18px]">place</span>
+            <span class="material-icons text-white text-[18px]">place</span>
           </div>
           <div class="flex flex-col">
             <span class="text-neutral-black font-extrabold text-base">Armenia → Medellín</span>
