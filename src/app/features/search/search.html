@@ -1,29 +1,29 @@
-<div class="w-full h-full bg-[#F5F3FF] flex flex-col overflow-hidden pb-16">
+<div class="w-full h-full bg-white flex flex-col overflow-hidden pb-16">
   
   <!-- Top App Bar -->
-  <div class="w-full bg-neutral-black pt-10 pb-4 px-4 flex items-center relative z-20">
+  <div class="w-full bg-brand-primary-dark pt-10 pb-4 px-4 flex items-center relative z-20">
     <button (click)="navigateBack()" class="w-10 h-10 flex items-center justify-center mr-2">
       <span class="material-icons text-white">arrow_back</span>
     </button>
     <div class="flex flex-col">
       <span class="text-white font-extrabold text-lg leading-tight">Buscar Viaje</span>
-      <span class="text-brand-purple text-[11px] font-medium leading-tight">Armenia • Quindío</span>
+      <span class="text-brand-primary text-[11px] font-medium leading-tight">Armenia • Quindío</span>
     </div>
   </div>
 
   <div class="flex-1 overflow-y-auto relative">
     
     <!-- Hero / Search Form section -->
-    <div class="w-full bg-neutral-black px-5 pt-2 pb-8 rounded-b-3xl relative z-10">
+    <div class="w-full bg-brand-primary-dark px-5 pt-2 pb-8 rounded-b-3xl relative z-10">
       <h2 class="text-white font-extrabold text-[28px]">Buscar Ruta</h2>
       <p class="text-white/60 text-sm font-medium">Encuentra el mejor viaje para ti</p>
       
-      <div class="w-full bg-neutral-charcoal rounded-[24px] shadow-2xl p-5 mt-6 border border-white/5">
+      <div class="w-full bg-brand-primary rounded-[24px] shadow-2xl p-5 mt-6 border border-white/5">
         
         <!-- Origen -->
         <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-brand-purple/15 flex items-center justify-center">
-            <div class="w-3.5 h-3.5 rounded-full border-[2.5px] border-brand-purple"></div>
+          <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+            <div class="w-3.5 h-3.5 rounded-full border-[2.5px] border-white/70"></div>
           </div>
           <div class="ml-4 flex flex-col w-full">
             <span class="text-white/40 text-xs font-medium">Origen</span>
@@ -35,8 +35,8 @@
         
         <!-- Destino -->
         <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-[#FBC02D]/15 flex items-center justify-center">
-            <span class="material-icons text-[#FBC02D] text-[18px]">location_on</span>
+          <div class="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center">
+            <span class="material-icons text-brand-accent text-[18px]">location_on</span>
           </div>
           <div class="ml-4 flex flex-col w-full">
             <span class="text-white/40 text-xs font-medium">Destino</span>
@@ -48,8 +48,8 @@
         
         <!-- Fecha -->
         <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-brand-purple/15 flex items-center justify-center">
-            <span class="material-icons text-brand-purple text-[18px]">calendar_today</span>
+          <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+            <span class="material-icons text-white/80 text-[18px]">calendar_today</span>
           </div>
           <div class="ml-4 flex flex-col w-full">
             <span class="text-white/40 text-xs font-medium">Fecha</span>
@@ -62,21 +62,21 @@
         <!-- Chips -->
         <div class="flex gap-2.5">
           <div class="flex-1 bg-[#F5F5F5] rounded-[10px] py-2 flex items-center justify-center gap-1.5 border border-[#EEEEEE]">
-            <span class="material-icons text-brand-purple text-[14px]">calendar_today</span>
+            <span class="material-icons text-brand-primary text-[14px]">calendar_today</span>
             <span class="text-[#555555] font-semibold text-[11px]">Hoy</span>
           </div>
           <div class="flex-1 bg-[#F5F5F5] rounded-[10px] py-2 flex items-center justify-center gap-1.5 border border-[#EEEEEE]">
-            <span class="material-icons text-brand-purple text-[14px]">group</span>
+            <span class="material-icons text-brand-primary text-[14px]">group</span>
             <span class="text-[#555555] font-semibold text-[11px]">1 Persona</span>
           </div>
           <div class="flex-[1.4] bg-[#F5F5F5] rounded-[10px] py-2 flex items-center justify-center gap-1.5 border border-[#EEEEEE]">
-            <span class="material-icons text-brand-purple text-[14px]">event_seat</span>
+            <span class="material-icons text-brand-primary text-[14px]">event_seat</span>
             <span class="text-[#555555] font-semibold text-[11px] truncate px-1">Cualquier...</span>
           </div>
         </div>
         
         <!-- Button -->
-        <button (click)="doSearch()" class="w-full bg-brand-purple py-4 rounded-xl mt-5 font-black text-neutral-black text-[15px] shadow-lg active:scale-95 transition-transform">
+        <button (click)="doSearch()" class="w-full bg-brand-primary-dark py-4 rounded-xl mt-5 font-black text-white text-[15px] shadow-lg active:scale-95 transition-transform">
           Buscar Viajes
         </button>
       </div>
@@ -86,13 +86,13 @@
     <div class="w-full px-5 mt-4 flex gap-2.5">
       <div (click)="selectedTab = 'INTERCITY'" 
            class="flex-1 h-[46px] rounded-[14px] flex items-center justify-center shadow-sm cursor-pointer transition-colors"
-           [ngClass]="selectedTab === 'INTERCITY' ? 'bg-neutral-black' : 'bg-white'">
-        <span [ngClass]="selectedTab === 'INTERCITY' ? 'text-brand-purple font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🚌 Intermunicipales</span>
+           [ngClass]="selectedTab === 'INTERCITY' ? 'bg-brand-primary-dark' : 'bg-white'">
+        <span [ngClass]="selectedTab === 'INTERCITY' ? 'text-brand-primary font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🚌 Intermunicipales</span>
       </div>
       <div (click)="selectedTab = 'URBAN'" 
            class="flex-1 h-[46px] rounded-[14px] flex items-center justify-center shadow-sm cursor-pointer transition-colors"
-           [ngClass]="selectedTab === 'URBAN' ? 'bg-neutral-black' : 'bg-white'">
-        <span [ngClass]="selectedTab === 'URBAN' ? 'text-brand-purple font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🔴 Buses Tinto</span>
+           [ngClass]="selectedTab === 'URBAN' ? 'bg-brand-primary-dark' : 'bg-white'">
+        <span [ngClass]="selectedTab === 'URBAN' ? 'text-brand-primary font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🔴 Buses Tinto</span>
       </div>
     </div>
 
@@ -101,7 +101,7 @@
       <div *ngFor="let filter of filters" 
            (click)="selectedFilter = filter"
            class="rounded-xl px-3.5 py-2 flex items-center whitespace-nowrap cursor-pointer transition-all"
-           [ngClass]="selectedFilter === filter ? 'bg-brand-purple text-neutral-black shadow-sm' : 'bg-white text-gray-500 border border-[#E0E0E0]'">
+           [ngClass]="selectedFilter === filter ? 'bg-brand-primary text-neutral-black shadow-sm' : 'bg-white text-gray-500 border border-[#E0E0E0]'">
         <span *ngIf="selectedFilter === filter" class="material-icons text-[14px] mr-1.5">filter_list</span>
         <span class="text-xs" [ngClass]="selectedFilter === filter ? 'font-bold' : 'font-medium'">{{ filter }}</span>
       </div>
@@ -112,7 +112,7 @@
       <!-- Group Header -->
       <div class="w-full flex items-center justify-between mb-3">
         <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-purple to-brand-purple-dark flex items-center justify-center">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-primary to-brand-primary-dark flex items-center justify-center">
             <span class="material-icons text-neutral-black text-[18px]">place</span>
           </div>
           <div class="flex flex-col">
@@ -120,8 +120,8 @@
             <span class="text-gray-500 text-xs">7 horas · desde $48.000</span>
           </div>
         </div>
-        <div class="bg-brand-purple/15 px-2.5 py-1 rounded-lg">
-          <span class="text-brand-purple-dark font-bold text-[11px]">2 opciones</span>
+        <div class="bg-brand-primary/15 px-2.5 py-1 rounded-lg">
+          <span class="text-brand-primary-dark font-bold text-[11px]">2 opciones</span>
         </div>
       </div>
       
@@ -131,15 +131,15 @@
           <div class="flex items-center gap-2.5">
             <div class="w-10 h-10 rounded-[10px] bg-white border border-[#F0F0F0] shadow-sm flex items-center justify-center p-1">
               <!-- Placeholder logo -->
-              <span class="material-icons text-brand-purple">directions_bus</span>
+              <span class="material-icons text-brand-primary">directions_bus</span>
             </div>
             <div class="flex flex-col">
               <span class="text-neutral-black font-extrabold text-[14px]">{{ route.companyName }}</span>
               <span class="text-gray-500 text-[11px]">{{ route.isDirect ? 'Directo' : 'Con paradas' }}</span>
             </div>
           </div>
-          <div *ngIf="route.tag" class="bg-brand-purple/10 border border-brand-purple/30 px-2 py-1 rounded-lg">
-            <span class="text-brand-purple-dark font-extrabold text-[10px]">{{ route.tag }}</span>
+          <div *ngIf="route.tag" class="bg-brand-primary/10 border border-brand-primary/30 px-2 py-1 rounded-lg">
+            <span class="text-brand-primary-dark font-extrabold text-[10px]">{{ route.tag }}</span>
           </div>
         </div>
         
@@ -149,13 +149,13 @@
             <span class="text-gray-500 text-[11px]">Armenia</span>
           </div>
           <div class="flex flex-col items-center flex-1 px-3">
-            <span class="text-brand-purple font-semibold text-[11px]">{{ route.duration }}</span>
+            <span class="text-brand-primary font-semibold text-[11px]">{{ route.duration }}</span>
             <div class="w-full flex items-center my-1">
-              <div class="w-1.5 h-1.5 rounded-full bg-brand-purple"></div>
-              <div class="flex-1 h-[1.5px] bg-brand-purple/40"></div>
-              <span class="material-icons text-brand-purple text-[16px] px-0.5">directions_bus</span>
-              <div class="flex-1 h-[1.5px] bg-brand-purple/40"></div>
-              <div class="w-1.5 h-1.5 rounded-full bg-brand-purple"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
+              <div class="flex-1 h-[1.5px] bg-brand-primary/40"></div>
+              <span class="material-icons text-brand-primary text-[16px] px-0.5">directions_bus</span>
+              <div class="flex-1 h-[1.5px] bg-brand-primary/40"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
             </div>
             <span class="text-gray-500 text-[10px]">{{ route.isDirect ? 'Sin paradas' : 'Con escalas' }}</span>
           </div>
@@ -175,7 +175,7 @@
             <span class="text-gray-500 text-xs">{{ route.seatsAvailable }} asientos</span>
           </div>
           <div class="flex flex-col items-end">
-            <span class="text-brand-purple font-black text-xl leading-none">{{ route.price }}</span>
+            <span class="text-brand-primary font-black text-xl leading-none">{{ route.price }}</span>
             <span class="text-gray-500 text-[10px]">desde / persona</span>
           </div>
         </div>
@@ -222,7 +222,7 @@
   
   <!-- Loading Overlay -->
   <div *ngIf="isSearching" class="absolute inset-0 bg-white/70 backdrop-blur-sm z-50 flex flex-col items-center justify-center">
-    <div class="w-16 h-16 rounded-full border-4 border-gray-200 border-t-brand-purple animate-spin"></div>
+    <div class="w-16 h-16 rounded-full border-4 border-gray-200 border-t-brand-primary animate-spin"></div>
     <span class="text-neutral-black font-bold mt-4">Buscando las mejores rutas...</span>
   </div>
 </div>

@@ -1,13 +1,13 @@
-<div class="w-full h-full bg-[#F5F3FF] flex flex-col overflow-hidden">
+<div class="w-full h-full bg-[#0A0A0A] flex flex-col overflow-hidden">
   
   <!-- Top App Bar -->
-  <div class="w-full bg-neutral-black pt-10 pb-4 px-4 flex items-center shrink-0 shadow-md">
+  <div class="w-full bg-[#0A0A0A] pt-10 pb-4 px-4 flex items-center shrink-0 border-b border-white/5">
     <button (click)="navigateBack()" class="w-10 h-10 flex items-center justify-center mr-2">
       <span class="material-icons text-white">arrow_back</span>
     </button>
     <div class="flex flex-col">
       <span class="text-white font-extrabold text-[17px] leading-tight">Selecciona tu asiento</span>
-      <span class="text-brand-purple text-[11px] font-medium leading-tight mt-0.5">{{ origin }} → {{ destination }} · {{ departureTime }}</span>
+      <span class="text-white text-[11px] font-medium leading-tight mt-0.5">{{ origin }} → {{ destination }} · {{ departureTime }}</span>
     </div>
   </div>
 
@@ -15,18 +15,18 @@
     
     <!-- Trip info card -->
     <div class="w-full px-5 py-4">
-      <div class="w-full rounded-[20px] p-[1px] bg-gradient-to-tr from-brand-purple/40 to-brand-purple-dark/10">
+      <div class="w-full rounded-[20px] p-[1px] bg-gradient-to-tr from-[#1A1A1A]/40 to-[#0A0A0A]/10">
         <div class="w-full bg-gradient-to-r from-neutral-black to-neutral-charcoal rounded-[19px] px-5 py-3.5 flex justify-between items-center shadow-lg">
           <div class="flex items-center gap-1.5">
-            <span class="material-icons text-brand-purple text-[15px]">directions_bus</span>
+            <span class="material-icons text-white text-[15px]">directions_bus</span>
             <span class="text-white font-semibold text-xs">{{ company }}</span>
           </div>
           <div class="flex items-center gap-1.5">
-            <span class="material-icons text-brand-purple text-[15px]">access_time</span>
+            <span class="material-icons text-white text-[15px]">access_time</span>
             <span class="text-white font-semibold text-xs">{{ departureTime }}</span>
           </div>
           <div class="flex items-center gap-1.5">
-            <span class="material-icons text-brand-purple text-[15px]">airline_seat_recline_normal</span>
+            <span class="material-icons text-white text-[15px]">airline_seat_recline_normal</span>
             <span class="text-white font-semibold text-xs">{{ availableCount }} libres</span>
           </div>
         </div>
@@ -36,16 +36,16 @@
     <!-- Legend -->
     <div class="w-full px-5 flex justify-center gap-5">
       <div class="flex items-center gap-2">
-        <div class="w-[18px] h-[18px] rounded-[5px] bg-white border border-[#DDDDDD]"></div>
-        <span class="text-[#555555] font-medium text-xs">Libre</span>
+        <div class="w-[18px] h-[18px] rounded-[5px] bg-[#0A0A0A] border border-white/30"></div>
+        <span class="text-white/70 font-medium text-xs">Libre</span>
       </div>
       <div class="flex items-center gap-2">
-        <div class="w-[18px] h-[18px] rounded-[5px] bg-brand-purple border border-brand-purple"></div>
-        <span class="text-[#555555] font-medium text-xs">Seleccionado</span>
+        <div class="w-[18px] h-[18px] rounded-[5px] bg-[#1A1A1A] border border-white/20"></div>
+        <span class="text-white/70 font-medium text-xs">Seleccionado</span>
       </div>
       <div class="flex items-center gap-2">
-        <div class="w-[18px] h-[18px] rounded-[5px] bg-[#E0E0E0]"></div>
-        <span class="text-[#555555] font-medium text-xs">Ocupado</span>
+        <div class="w-[18px] h-[18px] rounded-[5px] bg-white/10"></div>
+        <span class="text-white/40 font-medium text-xs">Ocupado</span>
       </div>
     </div>
 
@@ -55,13 +55,13 @@
       <!-- Bus Front -->
       <div class="relative flex justify-center w-full">
         <!-- Mirrors -->
-        <div class="absolute left-1/2 -translate-x-[118px] top-1/2 -translate-y-1/2 w-2.5 h-5 bg-neutral-charcoal rounded-[3px]"></div>
-        <div class="absolute left-1/2 translate-x-[108px] top-1/2 -translate-y-1/2 w-2.5 h-5 bg-neutral-charcoal rounded-[3px]"></div>
+        <div class="absolute left-1/2 -translate-x-[118px] top-1/2 -translate-y-1/2 w-2.5 h-5 bg-[#1A1A1A] rounded-[3px]"></div>
+        <div class="absolute left-1/2 translate-x-[108px] top-1/2 -translate-y-1/2 w-2.5 h-5 bg-[#1A1A1A] rounded-[3px]"></div>
         
         <!-- Cabin -->
         <div class="w-[220px] h-[60px] bg-gradient-to-b from-neutral-black to-[#2C2C2C] rounded-t-[40px] rounded-b-lg flex flex-col items-center justify-center relative z-10 shadow-md">
-          <span class="material-icons text-brand-purple text-[22px]">directions_bus</span>
-          <span class="text-brand-purple font-extrabold text-[8px] tracking-widest mt-0.5">FRENTE DEL BUS</span>
+          <span class="material-icons text-white text-[22px]">directions_bus</span>
+          <span class="text-white font-extrabold text-[8px] tracking-widest mt-0.5">FRENTE DEL BUS</span>
         </div>
       </div>
 
@@ -89,17 +89,17 @@
           <ng-container *ngIf="getSeatsForRow(row).a as s">
             <div (click)="selectSeat(s.id)" class="w-9 h-11 rounded-[8px] flex flex-col items-center justify-center border shadow-sm transition-colors relative"
                  [ngClass]="{
-                   'bg-white border-[#DDDDDD] cursor-pointer active:bg-gray-50': s.status === 'AVAILABLE',
-                   'bg-brand-purple border-brand-purple cursor-pointer': s.status === 'SELECTED',
-                   'bg-[#E0E0E0] border-[#D0D0D0] cursor-not-allowed': s.status === 'OCCUPIED'
+                   'bg-[#0A0A0A] border-white/20 cursor-pointer active:bg-white/5': s.status === 'AVAILABLE',
+                   'bg-white border-white cursor-pointer shadow-white/50': s.status === 'SELECTED',
+                   'bg-white/5 border-white/5 cursor-not-allowed': s.status === 'OCCUPIED'
                  }">
                  <div class="w-[60%] h-1.5 rounded-t-sm mb-1 opacity-50"
-                      [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                      [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
                  <span class="font-bold text-[10px]"
-                       [ngClass]="s.status === 'SELECTED' ? 'text-neutral-black' : 'text-[#777777]'">{{ s.label }}</span>
+                       [ngClass]="s.status === 'SELECTED' ? 'text-black' : 'text-white/50'">{{ s.label }}</span>
                  <div class="absolute bottom-1 w-full flex justify-between px-1">
-                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
-                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
                  </div>
             </div>
           </ng-container>
@@ -109,17 +109,17 @@
           <ng-container *ngIf="getSeatsForRow(row).b as s">
             <div (click)="selectSeat(s.id)" class="w-9 h-11 rounded-[8px] flex flex-col items-center justify-center border shadow-sm transition-colors relative"
                  [ngClass]="{
-                   'bg-white border-[#DDDDDD] cursor-pointer active:bg-gray-50': s.status === 'AVAILABLE',
-                   'bg-brand-purple border-brand-purple cursor-pointer': s.status === 'SELECTED',
-                   'bg-[#E0E0E0] border-[#D0D0D0] cursor-not-allowed': s.status === 'OCCUPIED'
+                   'bg-[#0A0A0A] border-white/20 cursor-pointer active:bg-white/5': s.status === 'AVAILABLE',
+                   'bg-white border-white cursor-pointer shadow-white/50': s.status === 'SELECTED',
+                   'bg-white/5 border-white/5 cursor-not-allowed': s.status === 'OCCUPIED'
                  }">
                  <div class="w-[60%] h-1.5 rounded-t-sm mb-1 opacity-50"
-                      [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                      [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
                  <span class="font-bold text-[10px]"
-                       [ngClass]="s.status === 'SELECTED' ? 'text-neutral-black' : 'text-[#777777]'">{{ s.label }}</span>
+                       [ngClass]="s.status === 'SELECTED' ? 'text-black' : 'text-white/50'">{{ s.label }}</span>
                  <div class="absolute bottom-1 w-full flex justify-between px-1">
-                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
-                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
                  </div>
             </div>
           </ng-container>
@@ -133,17 +133,17 @@
           <ng-container *ngIf="getSeatsForRow(row).c as s">
             <div (click)="selectSeat(s.id)" class="w-9 h-11 rounded-[8px] flex flex-col items-center justify-center border shadow-sm transition-colors relative"
                  [ngClass]="{
-                   'bg-white border-[#DDDDDD] cursor-pointer active:bg-gray-50': s.status === 'AVAILABLE',
-                   'bg-brand-purple border-brand-purple cursor-pointer': s.status === 'SELECTED',
-                   'bg-[#E0E0E0] border-[#D0D0D0] cursor-not-allowed': s.status === 'OCCUPIED'
+                   'bg-[#0A0A0A] border-white/20 cursor-pointer active:bg-white/5': s.status === 'AVAILABLE',
+                   'bg-white border-white cursor-pointer shadow-white/50': s.status === 'SELECTED',
+                   'bg-white/5 border-white/5 cursor-not-allowed': s.status === 'OCCUPIED'
                  }">
                  <div class="w-[60%] h-1.5 rounded-t-sm mb-1 opacity-50"
-                      [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                      [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
                  <span class="font-bold text-[10px]"
-                       [ngClass]="s.status === 'SELECTED' ? 'text-neutral-black' : 'text-[#777777]'">{{ s.label }}</span>
+                       [ngClass]="s.status === 'SELECTED' ? 'text-black' : 'text-white/50'">{{ s.label }}</span>
                  <div class="absolute bottom-1 w-full flex justify-between px-1">
-                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
-                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
                  </div>
             </div>
           </ng-container>
@@ -153,17 +153,17 @@
           <ng-container *ngIf="getSeatsForRow(row).d as s">
             <div (click)="selectSeat(s.id)" class="w-9 h-11 rounded-[8px] flex flex-col items-center justify-center border shadow-sm transition-colors relative"
                  [ngClass]="{
-                   'bg-white border-[#DDDDDD] cursor-pointer active:bg-gray-50': s.status === 'AVAILABLE',
-                   'bg-brand-purple border-brand-purple cursor-pointer': s.status === 'SELECTED',
-                   'bg-[#E0E0E0] border-[#D0D0D0] cursor-not-allowed': s.status === 'OCCUPIED'
+                   'bg-[#0A0A0A] border-white/20 cursor-pointer active:bg-white/5': s.status === 'AVAILABLE',
+                   'bg-white border-white cursor-pointer shadow-white/50': s.status === 'SELECTED',
+                   'bg-white/5 border-white/5 cursor-not-allowed': s.status === 'OCCUPIED'
                  }">
                  <div class="w-[60%] h-1.5 rounded-t-sm mb-1 opacity-50"
-                      [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                      [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
                  <span class="font-bold text-[10px]"
-                       [ngClass]="s.status === 'SELECTED' ? 'text-neutral-black' : 'text-[#777777]'">{{ s.label }}</span>
+                       [ngClass]="s.status === 'SELECTED' ? 'text-black' : 'text-white/50'">{{ s.label }}</span>
                  <div class="absolute bottom-1 w-full flex justify-between px-1">
-                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
-                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-[#0A0A0A]' : 'bg-white/30'"></div>
                  </div>
             </div>
           </ng-container>
@@ -185,31 +185,31 @@
 
       <!-- Bus Back -->
       <div class="w-[220px] h-[30px] bg-gradient-to-b from-[#2C2C2C] to-neutral-black rounded-b-[16px] flex items-center justify-center mt-2 shadow-md">
-        <span class="text-brand-purple/60 font-extrabold text-[7px] tracking-widest">PARTE TRASERA</span>
+        <span class="text-white/60 font-extrabold text-[7px] tracking-widest">PARTE TRASERA</span>
       </div>
 
     </div>
   </div>
 
   <!-- Bottom Continue Bar Fixed -->
-  <div class="shrink-0 w-full bg-white shadow-[0_-4px_16px_rgba(0,0,0,0.05)] rounded-t-2xl z-30 pb-safe">
+  <div class="shrink-0 w-full bg-[#0A0A0A] border-t border-white/5 z-30 pb-safe">
     <div class="px-5 pt-4 pb-6">
       
       <!-- Selected Seat Info -->
-      <div *ngIf="selectedSeatLabel" class="w-full bg-brand-purple/10 rounded-xl px-4 py-2.5 flex justify-between items-center mb-3 border border-brand-purple/20">
+      <div *ngIf="selectedSeatLabel" class="w-full bg-[#1A1A1A]/20 rounded-xl px-4 py-2.5 flex justify-between items-center mb-3 border border-white/20/30">
         <div class="flex items-center gap-2">
-          <span class="material-icons text-brand-purple text-[18px]">airline_seat_recline_normal</span>
-          <span class="text-[#555555] text-[13px]">Asiento seleccionado</span>
+          <span class="material-icons text-white text-[18px]">airline_seat_recline_normal</span>
+          <span class="text-white/70 text-[13px]">Asiento seleccionado</span>
         </div>
-        <span class="text-neutral-black font-extrabold text-xl">{{ selectedSeatLabel }}</span>
+        <span class="text-white font-bold text-xl">{{ selectedSeatLabel }}</span>
       </div>
 
       <!-- Continue Button -->
       <button (click)="continueToPayment()" 
               [disabled]="!selectedSeatId"
               class="w-full h-[52px] rounded-2xl flex items-center justify-center transition-all shadow-md active:scale-95"
-              [ngClass]="selectedSeatId ? 'bg-neutral-black' : 'bg-[#E0E0E0]'">
-        <span class="font-extrabold text-base" [ngClass]="selectedSeatId ? 'text-brand-purple' : 'text-gray-400'">
+              [ngClass]="selectedSeatId ? 'bg-brand-accent shadow-brand-accent/30' : 'bg-white/10'">
+        <span class="font-extrabold text-base" [ngClass]="selectedSeatId ? 'text-black' : 'text-white/30'">
           {{ selectedSeatId ? 'Continuar al pago' : 'Selecciona un asiento' }}
         </span>
       </button>

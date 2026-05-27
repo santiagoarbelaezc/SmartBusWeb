@@ -1,7 +1,7 @@
-<div class="w-full h-full bg-[#F5F3FF] flex flex-col overflow-hidden pb-20">
+<div class="w-full h-full bg-white flex flex-col overflow-hidden pb-20">
   
   <!-- Top App Bar -->
-  <div class="w-full bg-neutral-black pt-10 pb-4 px-6 flex items-center justify-center relative">
+  <div class="w-full bg-brand-primary-dark pt-10 pb-4 px-6 flex items-center justify-center relative">
     <h1 class="text-white text-lg font-bold">Mi Perfil</h1>
   </div>
 
@@ -11,14 +11,14 @@
     <!-- Hero Card -->
     <div class="w-full bg-gradient-to-b from-neutral-black to-[#1C1C1E] pt-7 pb-12 flex flex-col items-center">
       <div class="relative">
-        <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-brand-purple to-brand-purple-dark p-1">
+        <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-brand-primary to-brand-primary-dark p-1">
           <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
             <!-- Persona Icon placeholder (in real life img src=perfil) -->
             <span class="material-icons text-neutral-black text-5xl">person</span>
           </div>
         </div>
         <!-- Edit Button -->
-        <button class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-brand-purple flex items-center justify-center shadow">
+        <button class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center shadow">
           <span class="material-icons text-neutral-black text-sm">edit</span>
         </button>
       </div>
@@ -26,9 +26,9 @@
       <h2 class="text-white font-extrabold text-[22px] mt-4">{{ name }}</h2>
       <span class="text-white/55 text-[13px]">{{ email }}</span>
       
-      <div class="mt-4 px-4 py-1.5 bg-brand-purple/20 rounded-full border border-brand-purple/40 flex items-center gap-1.5">
-        <span class="material-icons text-brand-purple text-[15px]">stars</span>
-        <span class="text-brand-purple font-extrabold text-[13px]">Nivel {{ loyaltyLevel }}</span>
+      <div class="mt-4 px-4 py-1.5 bg-brand-primary/20 rounded-full border border-brand-primary/40 flex items-center gap-1.5">
+        <span class="material-icons text-brand-primary text-[15px]">stars</span>
+        <span class="text-brand-primary font-extrabold text-[13px]">Nivel {{ loyaltyLevel }}</span>
       </div>
     </div>
 
@@ -78,7 +78,7 @@
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <div *ngIf="item.badge" class="bg-brand-purple w-5 h-5 rounded-full flex items-center justify-center">
+              <div *ngIf="item.badge" class="bg-brand-primary w-5 h-5 rounded-full flex items-center justify-center">
                 <span class="text-neutral-black font-extrabold text-[10px]">{{ item.badge }}</span>
               </div>
               <span class="material-icons text-[#DDDDDD] text-xl">chevron_right</span>

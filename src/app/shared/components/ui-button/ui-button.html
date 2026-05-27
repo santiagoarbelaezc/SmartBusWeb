@@ -3,9 +3,9 @@
   [disabled]="disabled"
   class="w-full h-14 rounded-2xl border font-extrabold text-base flex items-center justify-center gap-2 transition-all duration-300"
   [ngClass]="{
-    'bg-brand-purple/15 border-brand-purple text-brand-purple hover:bg-brand-purple/25': isPrimary && !disabled,
-    'bg-white/5 border-brand-purple/40 text-brand-purple hover:bg-white/10': !isPrimary && !disabled,
-    'bg-neutral-charcoal border-neutral-charcoal text-gray-500 cursor-not-allowed': disabled
+    'bg-brand-primary border-brand-primary text-white hover:bg-brand-primary-dark shadow-md': isPrimary && !disabled,
+    'bg-transparent border-white/20 text-white hover:bg-white/10': !isPrimary && !disabled,
+    'bg-gray-300 border-gray-300 text-gray-500 cursor-not-allowed': disabled
   }"
 >
   <span *ngIf="icon" class="material-icons text-lg">{{ icon }}</span>

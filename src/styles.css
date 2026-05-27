@@ -5,17 +5,18 @@
 @theme {
   --color-brand-primary: #2D5FA6;
   --color-brand-primary-dark: #1A3A6B;
-  --color-brand-primary-light: #D6E6F7;
+  --color-brand-primary-light: #5B8FD4;
+  --color-brand-primary-lightest: #D6E6F7;
   
   --color-brand-accent: #E8A020;
   --color-brand-accent-light: #FFF0CC;
   
-  --color-neutral-black: #1A3A6B;
-  --color-neutral-charcoal: #2D5FA6;
+  --color-neutral-black: #1E293B;
+  --color-neutral-charcoal: #64748B;
   
   --color-surface-white: #FFFFFF;
-  --color-surface-offwhite: #F4F7F9;
-  --color-bg-app: #FFFFFF;
+  --color-surface-offwhite: #E2E8F0;
+  --color-bg-app: #F4F6FA;
   
   --color-status-red: #D32F2F;
   --color-status-green: #43A047;

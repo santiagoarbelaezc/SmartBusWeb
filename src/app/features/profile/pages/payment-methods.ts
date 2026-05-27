@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="w-full h-full bg-[#F5F3FF] flex flex-col overflow-hidden">
-      <div class="w-full bg-neutral-black pt-10 pb-4 px-4 flex items-center shrink-0">
+    <div class="w-full h-full bg-white flex flex-col overflow-hidden">
+      <div class="w-full bg-brand-primary-dark pt-10 pb-4 px-4 flex items-center shrink-0">
         <button (click)="navigateBack()" class="w-10 h-10 flex items-center justify-center mr-2 active:scale-95 transition-transform">
           <span class="material-icons text-white">arrow_back</span>
         </button>
@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
             <div class="absolute -right-10 -top-10 w-32 h-32 bg-white/5 rounded-full"></div>
             <div class="flex justify-between items-start">
               <span class="material-icons text-white">credit_card</span>
-              <span class="text-brand-purple font-extrabold italic">VISA</span>
+              <span class="text-brand-primary font-extrabold italic">VISA</span>
             </div>
             <div class="flex flex-col">
               <span class="text-white/80 tracking-widest font-mono text-lg">**** **** **** 4242</span>

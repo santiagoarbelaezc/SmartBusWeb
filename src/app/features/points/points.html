@@ -9,7 +9,7 @@
   <div class="flex-1 overflow-y-auto px-6 py-4">
     
     <!-- Points Card -->
-    <div class="w-full h-[180px] bg-brand-purple rounded-[24px] relative overflow-hidden flex flex-col justify-end p-6 shadow-md">
+    <div class="w-full h-[180px] bg-brand-primary rounded-[24px] relative overflow-hidden flex flex-col justify-end p-6 shadow-md">
       <span class="material-icons absolute right-[-20px] top-[10%] text-[120px] text-neutral-black/10">stars</span>
       
       <span class="text-neutral-black font-black text-5xl z-10">{{ totalPoints | number }}</span>
@@ -20,8 +20,8 @@
     <div class="mt-6">
       <span class="text-neutral-black font-bold text-base">Hacia el nivel Platinum</span>
       
-      <div class="w-full h-2 bg-brand-purple/20 rounded-full mt-2 overflow-hidden">
-        <div class="h-full bg-brand-purple rounded-full transition-all duration-1000" [style.width]="(progress * 100) + '%'"></div>
+      <div class="w-full h-2 bg-brand-primary/20 rounded-full mt-2 overflow-hidden">
+        <div class="h-full bg-brand-primary rounded-full transition-all duration-1000" [style.width]="(progress * 100) + '%'"></div>
       </div>
       
       <span class="text-gray-500 text-xs mt-2 block">Te faltan {{ pointsToNextLevel }} puntos para tu próximo viaje gratis</span>
@@ -31,8 +31,8 @@
     <div class="mt-10">
       <h2 class="text-neutral-black font-bold text-lg mb-4">Beneficios de nivel</h2>
       
-      <div *ngFor="let benefit of benefits" class="w-full bg-neutral-black/5 rounded-2xl p-4 flex items-center gap-3 mb-3">
-        <span class="material-icons text-brand-purple text-xl">stars</span>
+      <div *ngFor="let benefit of benefits" class="w-full bg-brand-primary-dark/5 rounded-2xl p-4 flex items-center gap-3 mb-3">
+        <span class="material-icons text-brand-primary text-xl">stars</span>
         <span class="text-neutral-black font-medium text-sm">{{ benefit }}</span>
       </div>
     </div>

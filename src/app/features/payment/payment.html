@@ -1,4 +1,4 @@
-<div class="w-full h-full bg-neutral-black flex flex-col overflow-hidden relative">
+<div class="w-full h-full bg-[#0A0A0A] flex flex-col overflow-hidden relative">
   
   <!-- Top App Bar -->
   <div class="w-full pt-10 pb-4 px-4 flex items-center shrink-0">
@@ -11,19 +11,19 @@
   <div class="flex-1 overflow-y-auto px-6 pb-28">
     <div class="h-4"></div>
     
-    <h2 class="text-brand-purple font-extrabold text-[22px] leading-tight">
+    <h2 class="text-white font-extrabold text-[22px] leading-tight">
       ¡Casi listo para tu próximo<br>destino!
     </h2>
     
     <div class="h-6"></div>
 
     <!-- Summary Card -->
-    <div class="w-full bg-neutral-charcoal rounded-2xl p-5 shadow-lg border border-white/5">
+    <div class="w-full bg-[#1A1A1A] rounded-2xl p-5 shadow-lg border border-white/5">
       <span class="text-white/60 text-[11px] font-bold tracking-wide uppercase">Resumen del viaje</span>
       <div class="h-2"></div>
       <div class="flex justify-between items-center">
         <span class="text-white font-bold text-lg">{{ route }}</span>
-        <span class="text-brand-purple font-bold text-xl">{{ total }}</span>
+        <span class="text-white font-bold text-xl">{{ total }}</span>
       </div>
       <span class="text-white/40 text-xs mt-1">{{ date }} • Asiento {{ seat }}</span>
     </div>
@@ -37,10 +37,10 @@
       <div *ngFor="let method of methods; let i = index" 
            (click)="selectMethod(i)"
            class="w-full rounded-2xl p-4 flex items-center cursor-pointer transition-colors border"
-           [ngClass]="selectedMethodIndex === i ? 'bg-neutral-charcoal border-brand-purple' : 'bg-neutral-charcoal border-transparent'">
+           [ngClass]="selectedMethodIndex === i ? 'bg-[#1A1A1A] border-white/20' : 'bg-[#1A1A1A] border-transparent'">
         
         <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-          <span class="material-icons" [ngClass]="selectedMethodIndex === i ? 'text-brand-purple' : 'text-white/40'">{{ method.icon }}</span>
+          <span class="material-icons" [ngClass]="selectedMethodIndex === i ? 'text-white' : 'text-white/40'">{{ method.icon }}</span>
         </div>
         
         <div class="w-4"></div>
@@ -49,33 +49,33 @@
           {{ method.title }}
         </span>
         
-        <span *ngIf="selectedMethodIndex === i" class="material-icons text-brand-purple text-[22px]">check_circle</span>
+        <span *ngIf="selectedMethodIndex === i" class="material-icons text-white text-[22px]">check_circle</span>
       </div>
     </div>
 
     <div class="h-8"></div>
 
     <!-- Security Note -->
-    <div class="w-full bg-brand-purple/10 border border-brand-purple/20 rounded-xl p-4 flex items-center">
-      <span class="material-icons text-brand-purple text-base shrink-0">lock</span>
+    <div class="w-full bg-[#1A1A1A]/10 border border-white/20/20 rounded-xl p-4 flex items-center">
+      <span class="material-icons text-white text-base shrink-0">lock</span>
       <div class="w-3"></div>
-      <span class="text-brand-purple/80 text-xs font-medium leading-relaxed">
+      <span class="text-white/80 text-xs font-medium leading-relaxed">
         Tu pago está protegido con encriptación de grado bancario
       </span>
     </div>
   </div>
 
   <!-- Bottom Bar -->
-  <div class="absolute bottom-0 w-full bg-neutral-black px-6 pt-4 pb-safe">
+  <div class="absolute bottom-0 w-full bg-[#0A0A0A] px-6 pt-4 pb-safe">
     <button (click)="pay()" 
-            class="w-full h-[52px] bg-brand-purple rounded-2xl flex items-center justify-center mb-6 shadow-lg active:scale-95 transition-transform relative overflow-hidden">
-      <span class="text-neutral-black font-extrabold text-base">Pagar {{ total }}</span>
+            class="w-full h-[52px] bg-brand-accent rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-accent/30 active:scale-95 transition-transform relative overflow-hidden">
+      <span class="text-black font-extrabold text-base">Pagar {{ total }}</span>
     </button>
   </div>
 
   <!-- Loading Overlay -->
-  <div *ngIf="isProcessing" class="absolute inset-0 bg-neutral-black/80 backdrop-blur-md z-50 flex flex-col items-center justify-center">
-    <div class="w-16 h-16 rounded-full border-4 border-white/10 border-t-brand-purple animate-spin"></div>
+  <div *ngIf="isProcessing" class="absolute inset-0 bg-[#0A0A0A]/80 backdrop-blur-md z-50 flex flex-col items-center justify-center">
+    <div class="w-16 h-16 rounded-full border-4 border-white/10 border-t-brand-primary animate-spin"></div>
     <span class="text-white font-bold mt-4">Procesando pago...</span>
   </div>
 </div>
