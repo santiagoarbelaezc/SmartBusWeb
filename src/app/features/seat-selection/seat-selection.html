@@ -1,1 +1,218 @@
-<p>seat-selection works!</p>
+<div class="w-full h-full bg-[#F5F6F8] flex flex-col overflow-hidden">
+  
+  <!-- Top App Bar -->
+  <div class="w-full bg-neutral-black pt-10 pb-4 px-4 flex items-center shrink-0 shadow-md">
+    <button (click)="navigateBack()" class="w-10 h-10 flex items-center justify-center mr-2">
+      <span class="material-icons text-white">arrow_back</span>
+    </button>
+    <div class="flex flex-col">
+      <span class="text-white font-extrabold text-[17px] leading-tight">Selecciona tu asiento</span>
+      <span class="text-brand-gold text-[11px] font-medium leading-tight mt-0.5">{{ origin }} → {{ destination }} · {{ departureTime }}</span>
+    </div>
+  </div>
+
+  <div class="flex-1 overflow-y-auto pb-28">
+    
+    <!-- Trip info card -->
+    <div class="w-full px-5 py-4">
+      <div class="w-full rounded-[20px] p-[1px] bg-gradient-to-tr from-brand-gold/40 to-brand-gold-dark/10">
+        <div class="w-full bg-gradient-to-r from-neutral-black to-neutral-charcoal rounded-[19px] px-5 py-3.5 flex justify-between items-center shadow-lg">
+          <div class="flex items-center gap-1.5">
+            <span class="material-icons text-brand-gold text-[15px]">directions_bus</span>
+            <span class="text-white font-semibold text-xs">{{ company }}</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="material-icons text-brand-gold text-[15px]">access_time</span>
+            <span class="text-white font-semibold text-xs">{{ departureTime }}</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="material-icons text-brand-gold text-[15px]">airline_seat_recline_normal</span>
+            <span class="text-white font-semibold text-xs">{{ availableCount }} libres</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="w-full px-5 flex justify-center gap-5">
+      <div class="flex items-center gap-2">
+        <div class="w-[18px] h-[18px] rounded-[5px] bg-white border border-[#DDDDDD]"></div>
+        <span class="text-[#555555] font-medium text-xs">Libre</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="w-[18px] h-[18px] rounded-[5px] bg-brand-gold border border-brand-gold"></div>
+        <span class="text-[#555555] font-medium text-xs">Seleccionado</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="w-[18px] h-[18px] rounded-[5px] bg-[#E0E0E0]"></div>
+        <span class="text-[#555555] font-medium text-xs">Ocupado</span>
+      </div>
+    </div>
+
+    <!-- Bus Layout -->
+    <div class="w-full px-4 flex flex-col items-center mt-6">
+      
+      <!-- Bus Front -->
+      <div class="relative flex justify-center w-full">
+        <!-- Mirrors -->
+        <div class="absolute left-1/2 -translate-x-[118px] top-1/2 -translate-y-1/2 w-2.5 h-5 bg-neutral-charcoal rounded-[3px]"></div>
+        <div class="absolute left-1/2 translate-x-[108px] top-1/2 -translate-y-1/2 w-2.5 h-5 bg-neutral-charcoal rounded-[3px]"></div>
+        
+        <!-- Cabin -->
+        <div class="w-[220px] h-[60px] bg-gradient-to-b from-neutral-black to-[#2C2C2C] rounded-t-[40px] rounded-b-lg flex flex-col items-center justify-center relative z-10 shadow-md">
+          <span class="material-icons text-brand-gold text-[22px]">directions_bus</span>
+          <span class="text-brand-gold font-extrabold text-[8px] tracking-widest mt-0.5">FRENTE DEL BUS</span>
+        </div>
+      </div>
+
+      <div class="h-1"></div>
+
+      <!-- Column Headers -->
+      <div class="flex items-center justify-center mt-2 mb-2 w-[220px]">
+        <div class="w-9 h-5 flex items-center justify-center"><span class="text-[#888888] font-extrabold text-[11px]">A</span></div>
+        <div class="w-1"></div>
+        <div class="w-9 h-5 flex items-center justify-center"><span class="text-[#888888] font-extrabold text-[11px]">B</span></div>
+        
+        <!-- Aisle -->
+        <div class="w-10 flex items-center justify-center"><span class="text-[14px]">🚶</span></div>
+        
+        <div class="w-9 h-5 flex items-center justify-center"><span class="text-[#888888] font-extrabold text-[11px]">C</span></div>
+        <div class="w-1"></div>
+        <div class="w-9 h-5 flex items-center justify-center"><span class="text-[#888888] font-extrabold text-[11px]">D</span></div>
+      </div>
+
+      <!-- Rows -->
+      <div *ngFor="let row of rows" class="flex flex-col items-center w-full">
+        <div class="flex items-center justify-center py-1.5 w-[220px]">
+          
+          <!-- Col A -->
+          <ng-container *ngIf="getSeatsForRow(row).a as s">
+            <div (click)="selectSeat(s.id)" class="w-9 h-11 rounded-[8px] flex flex-col items-center justify-center border shadow-sm transition-colors relative"
+                 [ngClass]="{
+                   'bg-white border-[#DDDDDD] cursor-pointer active:bg-gray-50': s.status === 'AVAILABLE',
+                   'bg-brand-gold border-brand-gold cursor-pointer': s.status === 'SELECTED',
+                   'bg-[#E0E0E0] border-[#D0D0D0] cursor-not-allowed': s.status === 'OCCUPIED'
+                 }">
+                 <div class="w-[60%] h-1.5 rounded-t-sm mb-1 opacity-50"
+                      [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                 <span class="font-bold text-[10px]"
+                       [ngClass]="s.status === 'SELECTED' ? 'text-neutral-black' : 'text-[#777777]'">{{ s.label }}</span>
+                 <div class="absolute bottom-1 w-full flex justify-between px-1">
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                 </div>
+            </div>
+          </ng-container>
+          <div class="w-1"></div>
+          
+          <!-- Col B -->
+          <ng-container *ngIf="getSeatsForRow(row).b as s">
+            <div (click)="selectSeat(s.id)" class="w-9 h-11 rounded-[8px] flex flex-col items-center justify-center border shadow-sm transition-colors relative"
+                 [ngClass]="{
+                   'bg-white border-[#DDDDDD] cursor-pointer active:bg-gray-50': s.status === 'AVAILABLE',
+                   'bg-brand-gold border-brand-gold cursor-pointer': s.status === 'SELECTED',
+                   'bg-[#E0E0E0] border-[#D0D0D0] cursor-not-allowed': s.status === 'OCCUPIED'
+                 }">
+                 <div class="w-[60%] h-1.5 rounded-t-sm mb-1 opacity-50"
+                      [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                 <span class="font-bold text-[10px]"
+                       [ngClass]="s.status === 'SELECTED' ? 'text-neutral-black' : 'text-[#777777]'">{{ s.label }}</span>
+                 <div class="absolute bottom-1 w-full flex justify-between px-1">
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                 </div>
+            </div>
+          </ng-container>
+
+          <!-- Aisle Row Num -->
+          <div class="w-10 flex items-center justify-center">
+            <span class="text-[#AAAAAA] font-bold text-[10px]">{{ row }}</span>
+          </div>
+
+          <!-- Col C -->
+          <ng-container *ngIf="getSeatsForRow(row).c as s">
+            <div (click)="selectSeat(s.id)" class="w-9 h-11 rounded-[8px] flex flex-col items-center justify-center border shadow-sm transition-colors relative"
+                 [ngClass]="{
+                   'bg-white border-[#DDDDDD] cursor-pointer active:bg-gray-50': s.status === 'AVAILABLE',
+                   'bg-brand-gold border-brand-gold cursor-pointer': s.status === 'SELECTED',
+                   'bg-[#E0E0E0] border-[#D0D0D0] cursor-not-allowed': s.status === 'OCCUPIED'
+                 }">
+                 <div class="w-[60%] h-1.5 rounded-t-sm mb-1 opacity-50"
+                      [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                 <span class="font-bold text-[10px]"
+                       [ngClass]="s.status === 'SELECTED' ? 'text-neutral-black' : 'text-[#777777]'">{{ s.label }}</span>
+                 <div class="absolute bottom-1 w-full flex justify-between px-1">
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                 </div>
+            </div>
+          </ng-container>
+          <div class="w-1"></div>
+
+          <!-- Col D -->
+          <ng-container *ngIf="getSeatsForRow(row).d as s">
+            <div (click)="selectSeat(s.id)" class="w-9 h-11 rounded-[8px] flex flex-col items-center justify-center border shadow-sm transition-colors relative"
+                 [ngClass]="{
+                   'bg-white border-[#DDDDDD] cursor-pointer active:bg-gray-50': s.status === 'AVAILABLE',
+                   'bg-brand-gold border-brand-gold cursor-pointer': s.status === 'SELECTED',
+                   'bg-[#E0E0E0] border-[#D0D0D0] cursor-not-allowed': s.status === 'OCCUPIED'
+                 }">
+                 <div class="w-[60%] h-1.5 rounded-t-sm mb-1 opacity-50"
+                      [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                 <span class="font-bold text-[10px]"
+                       [ngClass]="s.status === 'SELECTED' ? 'text-neutral-black' : 'text-[#777777]'">{{ s.label }}</span>
+                 <div class="absolute bottom-1 w-full flex justify-between px-1">
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                   <div class="w-1 h-3 rounded-full opacity-30" [ngClass]="s.status === 'SELECTED' ? 'bg-neutral-black' : 'bg-[#AAAAAA]'"></div>
+                 </div>
+            </div>
+          </ng-container>
+
+        </div>
+
+        <!-- Emergency Exit at Row 5 -->
+        <div *ngIf="row === 5" class="w-[220px] flex items-center justify-between py-1">
+          <div class="bg-red-500/10 border border-red-500/40 rounded-md px-2 py-1">
+            <span class="text-red-500 font-extrabold text-[9px]">🚪 SALIDA</span>
+          </div>
+          <div class="flex-1 h-px bg-[#E8E8E8] mx-2"></div>
+          <div class="bg-red-500/10 border border-red-500/40 rounded-md px-2 py-1">
+            <span class="text-red-500 font-extrabold text-[9px]">🚪 SALIDA</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bus Back -->
+      <div class="w-[220px] h-[30px] bg-gradient-to-b from-[#2C2C2C] to-neutral-black rounded-b-[16px] flex items-center justify-center mt-2 shadow-md">
+        <span class="text-brand-gold/60 font-extrabold text-[7px] tracking-widest">PARTE TRASERA</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Continue Bar Fixed -->
+  <div class="absolute bottom-0 w-full bg-white shadow-[0_-4px_16px_rgba(0,0,0,0.05)] rounded-t-2xl z-30 pb-safe">
+    <div class="px-5 pt-4 pb-6">
+      
+      <!-- Selected Seat Info -->
+      <div *ngIf="selectedSeatLabel" class="w-full bg-brand-gold/10 rounded-xl px-4 py-2.5 flex justify-between items-center mb-3 border border-brand-gold/20">
+        <div class="flex items-center gap-2">
+          <span class="material-icons text-brand-gold text-[18px]">airline_seat_recline_normal</span>
+          <span class="text-[#555555] text-[13px]">Asiento seleccionado</span>
+        </div>
+        <span class="text-neutral-black font-extrabold text-xl">{{ selectedSeatLabel }}</span>
+      </div>
+
+      <!-- Continue Button -->
+      <button (click)="continueToPayment()" 
+              [disabled]="!selectedSeatId"
+              class="w-full h-[52px] rounded-2xl flex items-center justify-center transition-all shadow-md active:scale-95"
+              [ngClass]="selectedSeatId ? 'bg-neutral-black' : 'bg-[#E0E0E0]'">
+        <span class="font-extrabold text-base" [ngClass]="selectedSeatId ? 'text-brand-gold' : 'text-gray-400'">
+          {{ selectedSeatId ? 'Continuar al pago' : 'Selecciona un asiento' }}
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
