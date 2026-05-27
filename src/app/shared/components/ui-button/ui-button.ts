@@ -1,9 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ui-button',
-  imports: [],
-  templateUrl: './ui-button.html',
-  styleUrl: './ui-button.css',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './ui-button.html'
 })
-export class UiButton {}
+export class UiButton {
+  @Input() text: string = '';
+  @Input() isPrimary: boolean = true;
+  @Input() disabled: boolean = false;
+  @Input() icon?: string;
+  @Output() clicked = new EventEmitter<void>();
+
+  onClick() {
+    if (!this.disabled) {
+      this.clicked.emit();
+    }
+  }
+}
