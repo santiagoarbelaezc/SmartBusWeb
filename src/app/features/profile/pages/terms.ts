@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="w-full h-full bg-[#F5F6F8] flex flex-col overflow-hidden">
+    <div class="w-full h-full bg-[#F5F3FF] flex flex-col overflow-hidden">
       <div class="w-full bg-neutral-black pt-10 pb-4 px-4 flex items-center shrink-0 shadow-md relative z-10">
         <button (click)="navigateBack()" class="w-10 h-10 flex items-center justify-center mr-2 active:scale-95 transition-transform">
           <span class="material-icons text-white">arrow_back</span>

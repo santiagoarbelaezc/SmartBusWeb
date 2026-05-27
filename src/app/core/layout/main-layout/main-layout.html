@@ -1,4 +1,4 @@
-<div class="w-full h-screen bg-[#F5F6F8] flex flex-col relative overflow-hidden">
+<div class="w-full h-screen bg-[#F5F3FF] flex flex-col relative overflow-hidden">
   
   <!-- Content Area (Router Outlet takes remaining space but has padding at bottom so navbar doesn't cover content) -->
   <div class="flex-1 overflow-hidden w-full h-full relative z-0">
@@ -15,17 +15,17 @@
       <!-- Icon with Badge -->
       <div class="relative flex flex-col items-center">
         <!-- Badge -->
-        <div *ngIf="item.badge" class="absolute -top-1 -right-2 bg-brand-gold text-neutral-black text-[9px] font-extrabold w-[16px] h-[16px] flex items-center justify-center rounded-full z-10 border border-white">
+        <div *ngIf="item.badge" class="absolute -top-1 -right-2 bg-brand-purple text-neutral-black text-[9px] font-extrabold w-[16px] h-[16px] flex items-center justify-center rounded-full z-10 border border-white">
           {{ item.badge }}
         </div>
         
         <span class="material-icons text-2xl transition-colors duration-300"
-              [ngClass]="isActive(item.route) ? 'text-brand-gold' : 'text-[#9E9E9E]'">
+              [ngClass]="isActive(item.route) ? 'text-brand-purple' : 'text-[#9E9E9E]'">
           {{ item.icon }}
         </span>
         
         <!-- Active Pill -->
-        <div class="h-[3px] rounded-full bg-brand-gold mt-1 transition-all duration-300"
+        <div class="h-[3px] rounded-full bg-brand-purple mt-1 transition-all duration-300"
              [ngClass]="isActive(item.route) ? 'w-8' : 'w-0 opacity-0'">
         </div>
       </div>
