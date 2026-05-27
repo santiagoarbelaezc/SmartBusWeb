@@ -1,3 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@theme {
+  --color-brand-gold: #C9A84C;
+  --color-brand-gold-dark: #A67C00;
+  --color-brand-gold-light: #E8D5A3;
+  
+  --color-neutral-black: #0D0D0D;
+  --color-neutral-charcoal: #1A1A1A;
+  
+  --color-surface-white: #FFFFFF;
+  --color-surface-offwhite: #FAFAFA;
+  --color-bg-app: #F5F6F8;
+  
+  --color-status-red: #D32F2F;
+  --color-status-green: #43A047;
+  --color-status-amber: #FFA726;
+
+  --animate-pulse-slow: pulse-slow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.08; }
+    50% { opacity: 0.03; }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(12px); }
+  }
+}
