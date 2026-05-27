@@ -1,1 +1,238 @@
-<p>search works!</p>
+<div class="w-full h-full bg-[#F5F6F8] flex flex-col overflow-hidden pb-16">
+  
+  <!-- Top App Bar -->
+  <div class="w-full bg-neutral-black pt-10 pb-4 px-4 flex items-center relative z-20">
+    <button (click)="navigateBack()" class="w-10 h-10 flex items-center justify-center mr-2">
+      <span class="material-icons text-white">arrow_back</span>
+    </button>
+    <div class="flex flex-col">
+      <span class="text-white font-extrabold text-lg leading-tight">Buscar Viaje</span>
+      <span class="text-brand-gold text-[11px] font-medium leading-tight">Armenia • Quindío</span>
+    </div>
+  </div>
+
+  <div class="flex-1 overflow-y-auto relative">
+    
+    <!-- Hero / Search Form section -->
+    <div class="w-full bg-neutral-black px-5 pt-2 pb-8 rounded-b-3xl relative z-10">
+      <h2 class="text-white font-extrabold text-[28px]">Buscar Ruta</h2>
+      <p class="text-white/60 text-sm font-medium">Encuentra el mejor viaje para ti</p>
+      
+      <div class="w-full bg-neutral-charcoal rounded-[24px] shadow-2xl p-5 mt-6 border border-white/5">
+        
+        <!-- Origen -->
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full bg-brand-gold/15 flex items-center justify-center">
+            <div class="w-3.5 h-3.5 rounded-full border-[2.5px] border-brand-gold"></div>
+          </div>
+          <div class="ml-4 flex flex-col w-full">
+            <span class="text-white/40 text-xs font-medium">Origen</span>
+            <input type="text" placeholder="¿Desde dónde?" [(ngModel)]="origin" class="bg-transparent text-white font-bold text-base outline-none w-full placeholder-white/20">
+          </div>
+        </div>
+        
+        <div class="w-full h-[1px] bg-white/5 my-4"></div>
+        
+        <!-- Destino -->
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full bg-[#FBC02D]/15 flex items-center justify-center">
+            <span class="material-icons text-[#FBC02D] text-[18px]">location_on</span>
+          </div>
+          <div class="ml-4 flex flex-col w-full">
+            <span class="text-white/40 text-xs font-medium">Destino</span>
+            <input type="text" placeholder="¿Hacia dónde?" [(ngModel)]="destination" class="bg-transparent text-white font-bold text-base outline-none w-full placeholder-white/20">
+          </div>
+        </div>
+        
+        <div class="w-full h-[1px] bg-white/5 my-4"></div>
+        
+        <!-- Fecha -->
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full bg-brand-gold/15 flex items-center justify-center">
+            <span class="material-icons text-brand-gold text-[18px]">calendar_today</span>
+          </div>
+          <div class="ml-4 flex flex-col w-full">
+            <span class="text-white/40 text-xs font-medium">Fecha</span>
+            <input type="text" [(ngModel)]="date" readonly class="bg-transparent text-white font-bold text-base outline-none w-full">
+          </div>
+        </div>
+        
+        <div class="w-full h-[1px] bg-[#F0F0F0]/10 my-4"></div>
+        
+        <!-- Chips -->
+        <div class="flex gap-2.5">
+          <div class="flex-1 bg-[#F5F5F5] rounded-[10px] py-2 flex items-center justify-center gap-1.5 border border-[#EEEEEE]">
+            <span class="material-icons text-brand-gold text-[14px]">calendar_today</span>
+            <span class="text-[#555555] font-semibold text-[11px]">Hoy</span>
+          </div>
+          <div class="flex-1 bg-[#F5F5F5] rounded-[10px] py-2 flex items-center justify-center gap-1.5 border border-[#EEEEEE]">
+            <span class="material-icons text-brand-gold text-[14px]">group</span>
+            <span class="text-[#555555] font-semibold text-[11px]">1 Persona</span>
+          </div>
+          <div class="flex-[1.4] bg-[#F5F5F5] rounded-[10px] py-2 flex items-center justify-center gap-1.5 border border-[#EEEEEE]">
+            <span class="material-icons text-brand-gold text-[14px]">event_seat</span>
+            <span class="text-[#555555] font-semibold text-[11px] truncate px-1">Cualquier...</span>
+          </div>
+        </div>
+        
+        <!-- Button -->
+        <button (click)="doSearch()" class="w-full bg-brand-gold py-4 rounded-xl mt-5 font-black text-neutral-black text-[15px] shadow-lg active:scale-95 transition-transform">
+          Buscar Viajes
+        </button>
+      </div>
+    </div>
+
+    <!-- Tabs (Intermunicipales / Tinto) -->
+    <div class="w-full px-5 mt-4 flex gap-2.5">
+      <div (click)="selectedTab = 'INTERCITY'" 
+           class="flex-1 h-[46px] rounded-[14px] flex items-center justify-center shadow-sm cursor-pointer transition-colors"
+           [ngClass]="selectedTab === 'INTERCITY' ? 'bg-neutral-black' : 'bg-white'">
+        <span [ngClass]="selectedTab === 'INTERCITY' ? 'text-brand-gold font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🚌 Intermunicipales</span>
+      </div>
+      <div (click)="selectedTab = 'URBAN'" 
+           class="flex-1 h-[46px] rounded-[14px] flex items-center justify-center shadow-sm cursor-pointer transition-colors"
+           [ngClass]="selectedTab === 'URBAN' ? 'bg-neutral-black' : 'bg-white'">
+        <span [ngClass]="selectedTab === 'URBAN' ? 'text-brand-gold font-extrabold' : 'text-[#888888] font-medium'" class="text-[13px]">🔴 Buses Tinto</span>
+      </div>
+    </div>
+
+    <!-- Filter Chips -->
+    <div class="w-full px-5 mt-4 flex gap-2 overflow-x-auto hide-scrollbar pb-2">
+      <div *ngFor="let filter of filters" 
+           (click)="selectedFilter = filter"
+           class="rounded-xl px-3.5 py-2 flex items-center whitespace-nowrap cursor-pointer transition-all"
+           [ngClass]="selectedFilter === filter ? 'bg-brand-gold text-neutral-black shadow-sm' : 'bg-white text-gray-500 border border-[#E0E0E0]'">
+        <span *ngIf="selectedFilter === filter" class="material-icons text-[14px] mr-1.5">filter_list</span>
+        <span class="text-xs" [ngClass]="selectedFilter === filter ? 'font-bold' : 'font-medium'">{{ filter }}</span>
+      </div>
+    </div>
+
+    <!-- Results: INTERCITY -->
+    <div *ngIf="selectedTab === 'INTERCITY'" class="mt-4 px-5 pb-8">
+      <!-- Group Header -->
+      <div class="w-full flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-gold to-brand-gold-dark flex items-center justify-center">
+            <span class="material-icons text-neutral-black text-[18px]">place</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-neutral-black font-extrabold text-base">Armenia → Medellín</span>
+            <span class="text-gray-500 text-xs">7 horas · desde $48.000</span>
+          </div>
+        </div>
+        <div class="bg-brand-gold/15 px-2.5 py-1 rounded-lg">
+          <span class="text-brand-gold-dark font-bold text-[11px]">2 opciones</span>
+        </div>
+      </div>
+      
+      <!-- Route Cards -->
+      <div *ngFor="let route of routes" (click)="selectRoute()" class="w-full bg-white rounded-[18px] shadow-sm p-4 mb-3 border border-[#F0F0F0] cursor-pointer hover:shadow-md transition-shadow">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-[10px] bg-white border border-[#F0F0F0] shadow-sm flex items-center justify-center p-1">
+              <!-- Placeholder logo -->
+              <span class="material-icons text-brand-gold">directions_bus</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-neutral-black font-extrabold text-[14px]">{{ route.companyName }}</span>
+              <span class="text-gray-500 text-[11px]">{{ route.isDirect ? 'Directo' : 'Con paradas' }}</span>
+            </div>
+          </div>
+          <div *ngIf="route.tag" class="bg-brand-gold/10 border border-brand-gold/30 px-2 py-1 rounded-lg">
+            <span class="text-brand-gold-dark font-extrabold text-[10px]">{{ route.tag }}</span>
+          </div>
+        </div>
+        
+        <div class="w-full flex justify-between items-center mt-3.5">
+          <div class="flex flex-col">
+            <span class="text-neutral-black font-extrabold text-lg">{{ route.departureTime }}</span>
+            <span class="text-gray-500 text-[11px]">Armenia</span>
+          </div>
+          <div class="flex flex-col items-center flex-1 px-3">
+            <span class="text-brand-gold font-semibold text-[11px]">{{ route.duration }}</span>
+            <div class="w-full flex items-center my-1">
+              <div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div>
+              <div class="flex-1 h-[1.5px] bg-brand-gold/40"></div>
+              <span class="material-icons text-brand-gold text-[16px] px-0.5">directions_bus</span>
+              <div class="flex-1 h-[1.5px] bg-brand-gold/40"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-brand-gold"></div>
+            </div>
+            <span class="text-gray-500 text-[10px]">{{ route.isDirect ? 'Sin paradas' : 'Con escalas' }}</span>
+          </div>
+          <div class="flex flex-col items-end">
+            <span class="text-neutral-black font-extrabold text-lg">{{ route.destination }}</span>
+            <span class="text-gray-500 text-[11px]">Llegada</span>
+          </div>
+        </div>
+        
+        <div class="w-full h-px bg-[#F0F0F0] my-3"></div>
+        
+        <div class="w-full flex justify-between items-center">
+          <div class="flex items-center gap-2">
+            <div class="{{ route.occupancyBg }} px-2 py-1 rounded-lg">
+              <span class="{{ route.occupancyColor }} font-semibold text-[11px]">● {{ route.occupancyLabel }}</span>
+            </div>
+            <span class="text-gray-500 text-xs">{{ route.seatsAvailable }} asientos</span>
+          </div>
+          <div class="flex flex-col items-end">
+            <span class="text-brand-gold font-black text-xl leading-none">{{ route.price }}</span>
+            <span class="text-gray-500 text-[10px]">desde / persona</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results: URBAN (Tinto) -->
+    <div *ngIf="selectedTab === 'URBAN'" class="mt-4 px-5 pb-8">
+      <div class="w-full h-[180px] rounded-[20px] bg-red-600 relative overflow-hidden shadow-md flex items-end p-4 mb-4">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        <div class="relative z-10 flex flex-col">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="bg-red-600 rounded px-2 py-0.5">
+              <span class="text-white font-extrabold text-[10px] tracking-wide">🔴 TINTO</span>
+            </div>
+            <span class="text-white/70 text-xs">Armenia, Quindío</span>
+          </div>
+          <span class="text-white font-extrabold text-xl">Buses Urbanos de Armenia</span>
+          <span class="text-white/60 text-xs">El transporte con historia de la ciudad</span>
+        </div>
+      </div>
+      
+      <!-- Urban route cards mock -->
+      <div *ngFor="let tinto of tintoRoutes" class="w-full bg-white rounded-[20px] shadow-sm p-4 mb-3">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-red-600/10 flex items-center justify-center">
+              <span class="material-icons text-red-600">directions_bus</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-neutral-black font-bold">{{ tinto.line }}</span>
+              <span class="text-gray-500 text-xs">{{ tinto.name }}</span>
+            </div>
+          </div>
+          <div class="bg-gray-100 rounded-lg px-2 py-1">
+            <span class="text-gray-600 text-[11px] font-bold">{{ tinto.interval }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <!-- Loading Overlay -->
+  <div *ngIf="isSearching" class="absolute inset-0 bg-white/70 backdrop-blur-sm z-50 flex flex-col items-center justify-center">
+    <div class="w-16 h-16 rounded-full border-4 border-gray-200 border-t-brand-gold animate-spin"></div>
+    <span class="text-neutral-black font-bold mt-4">Buscando las mejores rutas...</span>
+  </div>
+</div>
+
+<style>
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>
