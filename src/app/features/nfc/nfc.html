@@ -1,1 +1,94 @@
-<p>nfc works!</p>
+<div class="w-full h-full bg-neutral-black flex flex-col items-center overflow-y-auto pb-10">
+  
+  <!-- Top App Bar -->
+  <div class="w-full pt-10 pb-4 px-4 flex items-center shrink-0">
+    <button (click)="navigateBack()" class="w-10 h-10 flex items-center justify-center mr-2">
+      <span class="material-icons text-white">arrow_back</span>
+    </button>
+    <span class="text-brand-gold font-bold text-xl">Pago NFC</span>
+  </div>
+
+  <div class="h-10"></div>
+
+  <!-- Realistic Bus Reader (Validator) UI -->
+  <div class="w-[200px] h-[280px] bg-neutral-charcoal rounded-t-[40px] rounded-b-[20px] border-[4px] border-[#333333] flex flex-col items-center p-4 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+    
+    <!-- Validator Screen -->
+    <div class="w-full h-[110px] bg-neutral-black rounded-lg border border-brand-gold/30 p-2 flex items-center justify-center relative overflow-hidden">
+      <!-- Grid pattern overlay for "screen" effect -->
+      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:4px_4px]"></div>
+      
+      <div class="relative z-10 flex flex-col items-center justify-center w-full h-full transition-opacity duration-300">
+        
+        <ng-container *ngIf="status === 'IDLE'">
+          <span class="text-brand-gold text-[10px] font-bold text-center tracking-wide leading-tight">
+            ACERQUE<br>SU CELULAR
+          </span>
+        </ng-container>
+
+        <ng-container *ngIf="status === 'READING'">
+          <span class="text-brand-gold text-xs font-bold animate-pulse">LEYENDO...</span>
+        </ng-container>
+
+        <ng-container *ngIf="status === 'SUCCESS'">
+          <span class="material-icons text-green-500 text-[32px] mb-1 drop-shadow-[0_0_8px_rgba(34,197,94,0.6)]">check</span>
+          <span class="text-green-500 text-[10px] font-bold tracking-widest drop-shadow-[0_0_5px_rgba(34,197,94,0.6)]">APROBADO</span>
+        </ng-container>
+
+        <ng-container *ngIf="status === 'ERROR'">
+          <span class="text-red-500 text-[10px] font-bold tracking-widest">INTENTE DE NUEVO</span>
+        </ng-container>
+
+      </div>
+    </div>
+
+    <div class="h-6"></div>
+
+    <!-- NFC Target Icon -->
+    <span class="material-icons text-[70px] transition-colors duration-300"
+          [ngClass]="status === 'SUCCESS' ? 'text-green-500' : 'text-brand-gold/50'">
+      contactless
+    </span>
+  </div>
+
+  <div class="flex-1"></div>
+
+  <!-- Phone Animation Overlay (Simulated) -->
+  <div class="w-full h-[160px] flex flex-col items-center justify-center relative mt-8">
+    
+    <!-- Wave animations when IDLE or READING -->
+    <div *ngIf="status === 'IDLE' || status === 'READING'" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-16 h-16 rounded-full border-2 border-brand-gold/20 animate-ping absolute"></div>
+      <div class="w-24 h-24 rounded-full border-2 border-brand-gold/10 animate-ping absolute" style="animation-delay: 0.3s"></div>
+    </div>
+
+    <span *ngIf="status === 'SUCCESS'" class="text-brand-gold font-bold text-2xl z-10 animate-fade-in-up">¡Pago Exitoso!</span>
+    <span *ngIf="status !== 'SUCCESS'" class="text-white/70 text-sm z-10 mt-2">Pagar por NFC</span>
+  </div>
+
+  <!-- Bottom Balance Card -->
+  <div class="w-full px-6 mt-4">
+    <div class="w-full bg-neutral-charcoal rounded-[24px] border border-brand-gold/30 p-6 flex flex-col items-center">
+      <span class="text-brand-gold text-[11px] font-bold tracking-widest uppercase">Saldo Disponible</span>
+      <span class="text-white font-black text-[32px] mt-2">{{ availableBalance }}</span>
+    </div>
+  </div>
+
+  <!-- Mock Trigger -->
+  <div *ngIf="status === 'IDLE'" class="mt-6 px-6 w-full">
+    <button (click)="startReading()" class="w-full bg-brand-gold text-neutral-black font-bold h-12 rounded-xl shadow-lg active:scale-95 transition-transform">
+      Simular acercamiento
+    </button>
+  </div>
+  
+</div>
+
+<style>
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+</style>

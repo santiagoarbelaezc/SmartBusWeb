@@ -21,6 +21,7 @@ export const routes: Routes = [
 
   // Screens without Bottom Navigation
   { path: 'seat-selection', loadComponent: () => import('./features/seat-selection/seat-selection').then(m => m.SeatSelection) },
+  { path: 'payment', loadComponent: () => import('./features/payment/payment').then(m => m.Payment) },
   { path: 'nfc', loadComponent: () => import('./features/nfc/nfc').then(m => m.Nfc) },
   
   { path: '**', redirectTo: 'welcome' }

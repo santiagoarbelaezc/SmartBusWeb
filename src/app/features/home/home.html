@@ -1,160 +1,163 @@
-<div class="relative w-full h-screen bg-[#F5F6F8] overflow-y-auto pb-32">
+<div class="w-full h-full bg-[#F5F6F8] flex flex-col overflow-hidden pb-20">
   
-  <!-- Header App Bar -->
-  <div class="w-full flex items-center justify-between px-6 pt-10 pb-4 bg-transparent sticky top-0 z-10 backdrop-blur-md">
+  <!-- Header App Bar (Fixed) -->
+  <div class="w-full flex items-center justify-between px-6 pt-10 pb-4 bg-[#F5F6F8] shrink-0 z-20">
     <div class="flex flex-col">
       <span class="text-gray-500 text-sm font-medium">{{ greeting }}</span>
       <span class="text-neutral-black text-2xl font-bold">{{ userName }}</span>
     </div>
     
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2">
+      <!-- NFC Button -->
+      <button (click)="navigateTo('/nfc')" class="w-9 h-9 rounded-full bg-neutral-black flex items-center justify-center shadow-sm active:scale-95 transition-transform">
+        <span class="material-icons text-brand-gold text-[20px]">contactless</span>
+      </button>
+      
       <!-- Gold Badge -->
-      <div (click)="navigateTo('/profile')" class="flex items-center gap-1.5 px-3 py-1 bg-brand-gold/15 rounded-full cursor-pointer">
+      <div (click)="navigateTo('/profile')" class="flex items-center gap-1.5 px-3 py-1 bg-brand-gold/15 rounded-full cursor-pointer ml-1">
         <span class="material-icons text-brand-gold text-sm">stars</span>
         <span class="text-brand-gold text-xs font-semibold">Oro</span>
       </div>
-      <!-- Avatar -->
-      <div (click)="navigateTo('/profile')" class="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center p-0.5 cursor-pointer">
-        <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
-          <span class="material-icons text-neutral-black">person</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <div class="flex flex-col gap-7 mt-2">
-
-    <!-- 1. Search Bar -->
-    <div class="px-6">
-      <div (click)="navigateTo('/search')" class="w-full bg-neutral-black rounded-[18px] p-4 flex items-center justify-between shadow-lg cursor-pointer transform transition-transform active:scale-95">
-        <div class="flex items-center gap-3.5">
-          <div class="w-10 h-10 rounded-xl bg-brand-gold/15 flex items-center justify-center">
-            <span class="material-icons text-brand-gold text-xl">search</span>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-white font-semibold text-[15px]">¿A dónde vas hoy?</span>
-            <span class="text-white/45 text-xs">Toca para buscar rutas</span>
-          </div>
-        </div>
-        <span class="material-icons text-brand-gold text-sm">arrow_forward_ios</span>
-      </div>
-    </div>
-
-    <!-- 2. Quick Access -->
-    <div class="px-6 flex justify-between">
-      <div *ngFor="let item of quickAccess" (click)="navigateTo(item.route)" class="flex flex-col items-center gap-1.5 cursor-pointer transform transition-transform active:scale-90">
-        <div class="w-14 h-14 rounded-[18px] bg-gradient-to-b from-neutral-charcoal to-neutral-black flex items-center justify-center shadow-md">
-          <span class="material-icons text-brand-gold text-2xl">{{ item.icon }}</span>
-        </div>
-        <span class="text-neutral-black text-[11px] font-medium w-full text-center truncate px-1">{{ item.label }}</span>
-      </div>
-    </div>
-
-    <!-- 3. Current Trip -->
-    <div class="px-6 flex flex-col gap-2.5">
-      <h2 class="text-neutral-black font-bold text-lg">Viaje Actual</h2>
-      <div class="w-full bg-neutral-charcoal rounded-[24px] p-6 shadow-xl flex flex-col">
-        <div class="flex justify-between items-center w-full">
-          <div class="flex flex-col">
-            <div class="flex items-center gap-2">
-              <div class="w-2 h-2 rounded-full bg-brand-gold animate-pulse-slow"></div>
-              <span class="text-brand-gold text-[11px] font-extrabold tracking-wide">EN CURSO</span>
-            </div>
-            <span class="text-white font-extrabold text-2xl mt-1.5">Bogotá → Tunja</span>
-          </div>
-          <button (click)="navigateTo('/tracking')" class="w-11 h-11 rounded-full bg-brand-gold/20 flex items-center justify-center">
-            <span class="material-icons text-brand-gold text-[24px]">my_location</span>
-          </button>
-        </div>
-        
-        <div class="w-full h-px bg-white/10 my-5"></div>
-        
-        <div class="flex justify-between items-center w-full">
-          <div class="flex flex-col">
-            <span class="text-white/50 text-[11px]">Llegada estimada</span>
-            <span class="text-white font-bold text-[15px]">03:15 PM</span>
-          </div>
-          <button (click)="navigateTo('/tracking')" class="bg-brand-gold px-4 py-2 rounded-xl text-neutral-black font-extrabold text-xs shadow-md">
-            Sigue tu bus
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. Stats Banner -->
-    <div class="px-6">
-      <div class="w-full bg-gradient-to-r from-brand-gold to-brand-gold-dark rounded-[20px] py-5 flex justify-evenly shadow-lg">
-        <div *ngFor="let stat of stats" class="flex flex-col items-center">
-          <span class="material-icons text-neutral-black text-xl mb-1">{{ stat.icon }}</span>
-          <span class="text-neutral-black font-extrabold text-base">{{ stat.value }}</span>
-          <span class="text-neutral-black/65 font-medium text-[10px]">{{ stat.label }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. Promos -->
-    <div class="flex flex-col gap-3">
-      <div class="px-6 flex justify-between items-center">
-        <h2 class="text-neutral-black font-bold text-lg">Ofertas Exclusivas</h2>
-      </div>
-      <div class="flex overflow-x-auto snap-x hide-scrollbar px-6 gap-3 pb-2">
-        <div *ngFor="let promo of promos" class="min-w-[280px] h-[130px] rounded-[20px] bg-gradient-to-br {{promo.gradient}} p-5 relative border border-brand-gold/30 snap-center shadow-lg">
-          <div class="absolute bottom-5 right-5 w-[90px] h-[90px] rounded-full bg-brand-gold/10"></div>
-          <div class="flex flex-col z-10 relative">
-            <span class="bg-brand-gold/20 text-brand-gold text-[9px] font-extrabold px-2 py-1 rounded w-max tracking-wide mb-2">★ OFERTA</span>
-            <span class="text-white font-extrabold text-base">{{ promo.title }}</span>
-            <span class="text-white/70 text-xs mt-1">{{ promo.description }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. Available Routes -->
-    <div class="flex flex-col gap-3">
-      <div class="px-6 flex justify-between items-center">
-        <h2 class="text-neutral-black font-bold text-lg">Rutas Disponibles</h2>
-        <span (click)="navigateTo('/search')" class="text-brand-gold text-xs font-bold cursor-pointer">Ver todas</span>
-      </div>
-      <!-- Filters -->
-      <div class="flex overflow-x-auto hide-scrollbar px-6 gap-2">
-        <button *ngFor="let filter of filters" 
-          (click)="selectedFilter = filter"
-          [ngClass]="{'bg-neutral-black text-brand-gold font-semibold': selectedFilter === filter, 'bg-[#F0F0F0] text-gray-500': selectedFilter !== filter}"
-          class="px-4 py-2 rounded-full text-[13px] whitespace-nowrap transition-colors">
-          {{ filter }}
-        </button>
-      </div>
       
-      <!-- Route Cards -->
-      <div class="px-6 flex flex-col gap-3 mt-1">
-        <div *ngFor="let r of routes" (click)="navigateTo('/seat-selection')" class="w-full bg-white rounded-2xl p-4 shadow flex flex-col border border-gray-100 cursor-pointer">
-          <div class="flex justify-between items-start">
-            <span class="text-xs text-gray-500">{{ r.company }}</span>
-            <span class="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded font-bold">{{ r.status }}</span>
-          </div>
-          <div class="flex items-center gap-3 mt-2">
-            <span class="text-neutral-black font-bold text-lg">{{ r.origin }}</span>
-            <span class="material-icons text-brand-gold text-sm">arrow_forward</span>
-            <span class="text-neutral-black font-bold text-lg">{{ r.destination }}</span>
-          </div>
-          <div class="w-full flex justify-between items-end mt-3">
-            <div class="flex flex-col">
-              <span class="text-[10px] text-gray-400">Salida</span>
-              <span class="text-sm font-semibold text-neutral-black">{{ r.time }}</span>
-            </div>
-            <span class="text-brand-gold font-black text-xl">{{ r.price }}</span>
-          </div>
+      <!-- Avatar -->
+      <div (click)="navigateTo('/profile')" class="w-9 h-9 rounded-full bg-brand-gold flex items-center justify-center p-0.5 cursor-pointer ml-1">
+        <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+          <span class="material-icons text-neutral-black text-[18px]">person</span>
         </div>
       </div>
     </div>
-
   </div>
 
-  <!-- Floating NFC Button -->
-  <button (click)="navigateTo('/nfc')" class="fixed bottom-6 right-6 w-14 h-14 bg-neutral-black rounded-full flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3)] z-50 transform hover:scale-105 active:scale-95 transition-all">
-    <span class="material-icons text-brand-gold text-3xl">nfc</span>
-  </button>
+  <!-- Content (Scrollable) -->
+  <div class="flex-1 overflow-y-auto hide-scrollbar">
+    <div class="flex flex-col gap-7 mt-2 pb-10">
+
+      <!-- 1. Search Bar -->
+      <div class="px-6">
+        <div (click)="navigateTo('/search')" class="w-full bg-neutral-black rounded-[18px] p-4 flex items-center justify-between shadow-lg cursor-pointer transform transition-transform active:scale-95">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-brand-gold/15 flex items-center justify-center">
+              <span class="material-icons text-brand-gold text-xl">search</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-white font-semibold text-[15px]">¿A dónde vas hoy?</span>
+              <span class="text-white/45 text-xs">Toca para buscar rutas</span>
+            </div>
+          </div>
+          <span class="material-icons text-brand-gold text-sm">arrow_forward_ios</span>
+        </div>
+      </div>
+
+      <!-- 2. Quick Access -->
+      <div class="px-6 flex justify-between">
+        <div *ngFor="let item of quickAccess" (click)="navigateTo(item.route)" class="flex flex-col items-center gap-1.5 cursor-pointer transform transition-transform active:scale-90">
+          <div class="w-14 h-14 rounded-[18px] bg-gradient-to-b from-neutral-charcoal to-neutral-black flex items-center justify-center shadow-md">
+            <span class="material-icons text-brand-gold text-2xl">{{ item.icon }}</span>
+          </div>
+          <span class="text-neutral-black text-[11px] font-medium w-full text-center truncate px-1">{{ item.label }}</span>
+        </div>
+      </div>
+
+      <!-- 3. Current Trip -->
+      <div class="px-6 flex flex-col gap-2.5">
+        <h2 class="text-neutral-black font-bold text-lg">Viaje Actual</h2>
+        <div class="w-full bg-neutral-charcoal rounded-[24px] p-6 shadow-xl flex flex-col">
+          <div class="flex justify-between items-center w-full">
+            <div class="flex flex-col">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-brand-gold animate-pulse-slow"></div>
+                <span class="text-brand-gold text-[11px] font-extrabold tracking-wide">EN CURSO</span>
+              </div>
+              <span class="text-white font-extrabold text-2xl mt-1.5">Bogotá → Tunja</span>
+            </div>
+            <button class="w-11 h-11 rounded-full bg-brand-gold/20 flex items-center justify-center">
+              <span class="material-icons text-brand-gold text-[24px]">my_location</span>
+            </button>
+          </div>
+          
+          <div class="w-full h-px bg-white/10 my-5"></div>
+          
+          <div class="flex justify-between items-center w-full">
+            <div class="flex flex-col">
+              <span class="text-white/50 text-[11px]">Llegada estimada</span>
+              <span class="text-white font-bold text-[15px]">03:15 PM</span>
+            </div>
+            <button class="bg-brand-gold px-4 py-2 rounded-xl text-neutral-black font-extrabold text-xs shadow-md">
+              Sigue tu bus
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Stats Banner -->
+      <div class="px-6">
+        <div class="w-full bg-gradient-to-r from-brand-gold to-brand-gold-dark rounded-[20px] py-5 flex justify-evenly shadow-lg">
+          <div *ngFor="let stat of stats" class="flex flex-col items-center">
+            <span class="material-icons text-neutral-black text-xl mb-1">{{ stat.icon }}</span>
+            <span class="text-neutral-black font-extrabold text-base">{{ stat.value }}</span>
+            <span class="text-neutral-black/65 font-medium text-[10px]">{{ stat.label }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Promos -->
+      <div class="flex flex-col gap-3">
+        <div class="px-6 flex justify-between items-center">
+          <h2 class="text-neutral-black font-bold text-lg">Ofertas Exclusivas</h2>
+        </div>
+        <div class="flex overflow-x-auto snap-x hide-scrollbar px-6 gap-3 pb-2">
+          <div *ngFor="let promo of promos" class="min-w-[280px] h-[130px] rounded-[20px] bg-gradient-to-br {{promo.gradient}} p-5 relative border border-brand-gold/30 snap-center shadow-lg">
+            <div class="absolute bottom-5 right-5 w-[90px] h-[90px] rounded-full bg-brand-gold/10"></div>
+            <div class="flex flex-col z-10 relative">
+              <span class="bg-brand-gold/20 text-brand-gold text-[9px] font-extrabold px-2 py-1 rounded w-max tracking-wide mb-2">★ OFERTA</span>
+              <span class="text-white font-extrabold text-base">{{ promo.title }}</span>
+              <span class="text-white/70 text-xs mt-1">{{ promo.description }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Available Routes -->
+      <div class="flex flex-col gap-3">
+        <div class="px-6 flex justify-between items-center">
+          <h2 class="text-neutral-black font-bold text-lg">Rutas Disponibles</h2>
+          <span (click)="navigateTo('/search')" class="text-brand-gold text-xs font-bold cursor-pointer">Ver todas</span>
+        </div>
+        <!-- Filters -->
+        <div class="flex overflow-x-auto hide-scrollbar px-6 gap-2">
+          <button *ngFor="let filter of filters" 
+            (click)="selectedFilter = filter"
+            [ngClass]="{'bg-neutral-black text-brand-gold font-semibold': selectedFilter === filter, 'bg-[#F0F0F0] text-gray-500': selectedFilter !== filter}"
+            class="px-4 py-2 rounded-full text-[13px] whitespace-nowrap transition-colors">
+            {{ filter }}
+          </button>
+        </div>
+        
+        <!-- Route Cards -->
+        <div class="px-6 flex flex-col gap-3 mt-1">
+          <div *ngFor="let r of routes" (click)="navigateTo('/seat-selection')" class="w-full bg-white rounded-2xl p-4 shadow flex flex-col border border-gray-100 cursor-pointer">
+            <div class="flex justify-between items-start">
+              <span class="text-xs text-gray-500">{{ r.company }}</span>
+              <span class="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded font-bold">{{ r.status }}</span>
+            </div>
+            <div class="flex items-center gap-3 mt-2">
+              <span class="text-neutral-black font-bold text-lg">{{ r.origin }}</span>
+              <span class="material-icons text-brand-gold text-sm">arrow_forward</span>
+              <span class="text-neutral-black font-bold text-lg">{{ r.destination }}</span>
+            </div>
+            <div class="w-full flex justify-between items-end mt-3">
+              <div class="flex flex-col">
+                <span class="text-[10px] text-gray-400">Salida</span>
+                <span class="text-sm font-semibold text-neutral-black">{{ r.time }}</span>
+              </div>
+              <span class="text-brand-gold font-black text-xl">{{ r.price }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <style>

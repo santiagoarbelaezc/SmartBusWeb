@@ -1,8 +1,12 @@
 <div class="w-full h-full bg-[#F5F6F8] flex flex-col overflow-hidden pb-20">
   
   <!-- Top App Bar -->
-  <div class="w-full bg-neutral-black pt-10 pb-4 px-6 flex items-center justify-center relative">
+  <div class="w-full bg-neutral-black pt-10 pb-4 px-6 flex items-center justify-between shrink-0 relative">
+    <div class="w-9 h-9"></div> <!-- spacer -->
     <h1 class="text-brand-gold text-lg font-bold">Mis Tiquetes</h1>
+    <button (click)="router.navigate(['/nfc'])" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center active:scale-95 transition-transform">
+      <span class="material-icons text-brand-gold text-[20px]">contactless</span>
+    </button>
   </div>
 
   <!-- Tabs -->
