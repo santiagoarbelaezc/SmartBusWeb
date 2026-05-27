@@ -1,1 +1,127 @@
-<p>profile works!</p>
+<div class="w-full h-full bg-[#F5F6F8] flex flex-col overflow-hidden pb-20">
+  
+  <!-- Top App Bar -->
+  <div class="w-full bg-neutral-black pt-10 pb-4 px-6 flex items-center justify-center relative">
+    <h1 class="text-white text-lg font-bold">Mi Perfil</h1>
+  </div>
+
+  <!-- Content -->
+  <div class="flex-1 overflow-y-auto pb-10">
+    
+    <!-- Hero Card -->
+    <div class="w-full bg-gradient-to-b from-neutral-black to-[#1C1C1E] pt-7 pb-12 flex flex-col items-center">
+      <div class="relative">
+        <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-brand-gold to-brand-gold-dark p-1">
+          <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+            <!-- Persona Icon placeholder (in real life img src=perfil) -->
+            <span class="material-icons text-neutral-black text-5xl">person</span>
+          </div>
+        </div>
+        <!-- Edit Button -->
+        <button class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center shadow">
+          <span class="material-icons text-neutral-black text-sm">edit</span>
+        </button>
+      </div>
+      
+      <h2 class="text-white font-extrabold text-[22px] mt-4">{{ name }}</h2>
+      <span class="text-white/55 text-[13px]">{{ email }}</span>
+      
+      <div class="mt-4 px-4 py-1.5 bg-brand-gold/20 rounded-full border border-brand-gold/40 flex items-center gap-1.5">
+        <span class="material-icons text-brand-gold text-[15px]">stars</span>
+        <span class="text-brand-gold font-extrabold text-[13px]">Nivel {{ loyaltyLevel }}</span>
+      </div>
+    </div>
+
+    <!-- Stats Overlapping -->
+    <div class="w-full px-5 flex gap-2.5 -mt-6">
+      <div class="flex-1 bg-white rounded-[18px] shadow-md py-4 flex flex-col items-center">
+        <div class="w-10 h-10 rounded-xl bg-[#1B5E20]/10 flex items-center justify-center">
+          <span class="material-icons text-[#1B5E20] text-xl">directions_bus</span>
+        </div>
+        <span class="text-neutral-black font-black text-lg mt-2">{{ totalTrips }}</span>
+        <span class="text-gray-400 text-[11px] font-medium">Viajes</span>
+      </div>
+      
+      <div class="flex-1 bg-white rounded-[18px] shadow-md py-4 flex flex-col items-center">
+        <div class="w-10 h-10 rounded-xl bg-[#F57F17]/10 flex items-center justify-center">
+          <span class="material-icons text-[#F57F17] text-xl">stars</span>
+        </div>
+        <span class="text-neutral-black font-black text-lg mt-2">{{ totalPoints / 1000 }}K</span>
+        <span class="text-gray-400 text-[11px] font-medium">Puntos</span>
+      </div>
+      
+      <div class="flex-1 bg-white rounded-[18px] shadow-md py-4 flex flex-col items-center">
+        <div class="w-10 h-10 rounded-xl bg-[#6A1B9A]/10 flex items-center justify-center">
+          <span class="material-icons text-[#6A1B9A] text-xl">military_tech</span>
+        </div>
+        <span class="text-neutral-black font-black text-lg mt-2">{{ loyaltyLevel }}</span>
+        <span class="text-gray-400 text-[11px] font-medium">Nivel</span>
+      </div>
+    </div>
+
+    <!-- Section Account -->
+    <div class="px-5 mt-6 mb-2">
+      <span class="text-[#9E9E9E] font-extrabold text-[11px] tracking-widest uppercase">Cuenta</span>
+    </div>
+
+    <div class="px-5">
+      <div class="w-full bg-white rounded-[20px] shadow-sm flex flex-col overflow-hidden">
+        <div *ngFor="let item of accountItems; let last = last">
+          <div class="w-full px-5 py-3.5 flex items-center justify-between active:bg-gray-50 cursor-pointer transition-colors">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-[13px] {{ item.bgColor }} flex items-center justify-center">
+                <span class="material-icons text-white text-[22px]">{{ item.icon }}</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-neutral-black font-semibold text-[15px]">{{ item.title }}</span>
+                <span class="text-[#9E9E9E] text-xs">{{ item.subtitle }}</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div *ngIf="item.badge" class="bg-brand-gold w-5 h-5 rounded-full flex items-center justify-center">
+                <span class="text-neutral-black font-extrabold text-[10px]">{{ item.badge }}</span>
+              </div>
+              <span class="material-icons text-[#DDDDDD] text-xl">chevron_right</span>
+            </div>
+          </div>
+          <div *ngIf="!last" class="ml-[76px] mr-5 h-px bg-[#F0F0F0]"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Support -->
+    <div class="px-5 mt-8 mb-2">
+      <span class="text-[#9E9E9E] font-extrabold text-[11px] tracking-widest uppercase">Soporte</span>
+    </div>
+
+    <div class="px-5">
+      <div class="w-full bg-white rounded-[20px] shadow-sm flex flex-col overflow-hidden">
+        <div *ngFor="let item of supportItems; let last = last">
+          <div class="w-full px-5 py-3.5 flex items-center justify-between active:bg-gray-50 cursor-pointer transition-colors">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-[13px] {{ item.bgColor }} flex items-center justify-center">
+                <span class="material-icons text-white text-[22px]">{{ item.icon }}</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-neutral-black font-semibold text-[15px]">{{ item.title }}</span>
+                <span class="text-[#9E9E9E] text-xs">{{ item.subtitle }}</span>
+              </div>
+            </div>
+            <span class="material-icons text-[#DDDDDD] text-xl">chevron_right</span>
+          </div>
+          <div *ngIf="!last" class="ml-[76px] mr-5 h-px bg-[#F0F0F0]"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout -->
+    <div class="px-5 mt-8">
+      <button (click)="logout()" class="w-full bg-red-500/10 border border-red-500/20 py-4 rounded-[20px] flex items-center justify-center gap-2.5 active:scale-95 transition-transform">
+        <span class="material-icons text-red-500 text-xl">logout</span>
+        <span class="text-red-500 font-bold text-[15px]">Cerrar sesión</span>
+      </button>
+    </div>
+
+    <p class="text-center text-gray-400 text-[11px] font-medium mt-6 mb-4">SmartBus v1.0.0</p>
+  </div>
+</div>

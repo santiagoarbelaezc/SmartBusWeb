@@ -1,1 +1,56 @@
-<p>points works!</p>
+<div class="w-full h-full bg-white flex flex-col overflow-hidden pb-20">
+  
+  <!-- Top App Bar -->
+  <div class="w-full bg-white pt-10 pb-4 px-6 flex items-center justify-center relative">
+    <h1 class="text-neutral-black text-lg font-bold">SmartPoints</h1>
+  </div>
+
+  <!-- Content -->
+  <div class="flex-1 overflow-y-auto px-6 py-4">
+    
+    <!-- Points Card -->
+    <div class="w-full h-[180px] bg-brand-gold rounded-[24px] relative overflow-hidden flex flex-col justify-end p-6 shadow-md">
+      <span class="material-icons absolute right-[-20px] top-[10%] text-[120px] text-neutral-black/10">stars</span>
+      
+      <span class="text-neutral-black font-black text-5xl z-10">{{ totalPoints | number }}</span>
+      <span class="text-neutral-black/70 font-medium text-sm z-10 mt-1">SmartPoints acumulados</span>
+    </div>
+
+    <!-- Progress -->
+    <div class="mt-6">
+      <span class="text-neutral-black font-bold text-base">Hacia el nivel Platinum</span>
+      
+      <div class="w-full h-2 bg-brand-gold/20 rounded-full mt-2 overflow-hidden">
+        <div class="h-full bg-brand-gold rounded-full transition-all duration-1000" [style.width]="(progress * 100) + '%'"></div>
+      </div>
+      
+      <span class="text-gray-500 text-xs mt-2 block">Te faltan {{ pointsToNextLevel }} puntos para tu próximo viaje gratis</span>
+    </div>
+
+    <!-- Benefits -->
+    <div class="mt-10">
+      <h2 class="text-neutral-black font-bold text-lg mb-4">Beneficios de nivel</h2>
+      
+      <div *ngFor="let benefit of benefits" class="w-full bg-neutral-black/5 rounded-2xl p-4 flex items-center gap-3 mb-3">
+        <span class="material-icons text-brand-gold text-xl">stars</span>
+        <span class="text-neutral-black font-medium text-sm">{{ benefit }}</span>
+      </div>
+    </div>
+
+    <!-- History -->
+    <div class="mt-8 mb-4">
+      <h2 class="text-neutral-black font-bold text-lg mb-4">Historial reciente</h2>
+      
+      <div *ngFor="let item of history" class="w-full flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
+        <div class="flex flex-col">
+          <span class="text-neutral-black font-bold text-sm">{{ item.description }}</span>
+          <span class="text-gray-400 text-xs">{{ item.date }}</span>
+        </div>
+        <span class="font-bold text-sm" [ngClass]="item.amount > 0 ? 'text-green-600' : 'text-red-500'">
+          {{ item.amount > 0 ? '+' : '' }}{{ item.amount }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>

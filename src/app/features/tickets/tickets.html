@@ -1,1 +1,110 @@
-<p>tickets works!</p>
+<div class="w-full h-full bg-[#F5F6F8] flex flex-col overflow-hidden pb-20">
+  
+  <!-- Top App Bar -->
+  <div class="w-full bg-neutral-black pt-10 pb-4 px-6 flex items-center justify-center relative">
+    <h1 class="text-brand-gold text-lg font-bold">Mis Tiquetes</h1>
+  </div>
+
+  <!-- Tabs -->
+  <div class="w-full bg-neutral-black flex">
+    <div *ngFor="let tab of tabs; let i = index" 
+         (click)="selectedTab = i"
+         class="flex-1 py-3 flex flex-col items-center justify-center cursor-pointer relative">
+      <span class="text-[15px] transition-colors" [ngClass]="selectedTab === i ? 'text-brand-gold font-bold' : 'text-brand-gold/60 font-normal'">
+        {{ tab }}
+      </span>
+      <!-- Indicator -->
+      <div class="absolute bottom-0 w-full h-[3px] bg-brand-gold transition-opacity" [ngClass]="selectedTab === i ? 'opacity-100' : 'opacity-0'"></div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="flex-1 overflow-y-auto p-5">
+    
+    <ng-container *ngIf="selectedTab === 0">
+      <div *ngIf="activeTickets.length === 0" class="w-full h-full flex flex-col items-center justify-center p-8">
+        <span class="material-icons text-8xl text-gray-300">confirmation_number</span>
+        <h2 class="text-neutral-black font-bold text-lg mt-4">No tienes tiquetes activos</h2>
+        <p class="text-gray-500 text-center text-sm mt-1">Tus próximos viajes aparecerán aquí</p>
+      </div>
+
+      <div *ngFor="let ticket of activeTickets" class="w-full bg-white rounded-[20px] shadow border border-gray-100 p-5 mb-4">
+        <!-- Header -->
+        <div class="flex justify-between items-start">
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center p-1">
+              <!-- Placeholder for company logo -->
+              <div class="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center text-[8px] font-bold text-gray-500 text-center">LOGO</div>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-neutral-black font-extrabold text-lg">{{ ticket.origin }} → {{ ticket.destination }}</span>
+              <span class="text-brand-gold font-bold text-[11px]">{{ ticket.companyName }}</span>
+            </div>
+          </div>
+          <div class="bg-brand-gold/10 px-2.5 py-1 rounded-xl">
+            <span class="text-brand-gold font-bold text-[11px]">{{ ticket.status }}</span>
+          </div>
+        </div>
+
+        <div class="w-full border-t-[1.5px] border-dashed border-gray-300 my-4"></div>
+
+        <!-- Info -->
+        <div class="flex justify-between w-full">
+          <div class="flex flex-col">
+            <span class="text-gray-500 text-[11px]">Asiento</span>
+            <span class="text-neutral-black font-bold text-sm">{{ ticket.seat }}</span>
+          </div>
+          <div class="flex flex-col items-end">
+            <span class="text-gray-500 text-[11px]">Terminal</span>
+            <span class="text-neutral-black font-bold text-sm">{{ ticket.terminal }}</span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex gap-2.5 mt-5">
+          <button (click)="toggleExpand(ticket)" class="flex-1 h-12 bg-neutral-black text-brand-gold font-extrabold rounded-2xl shadow-lg active:scale-95 transition-transform">
+            {{ ticket.expanded ? 'Cerrar QR' : 'Ver Tiquete' }}
+          </button>
+          <button class="w-12 h-12 bg-neutral-black rounded-[16px] flex items-center justify-center active:scale-95 transition-transform">
+            <span class="material-icons text-brand-gold">my_location</span>
+          </button>
+        </div>
+
+        <!-- Expanded QR Section -->
+        <div *ngIf="ticket.expanded" class="w-full flex flex-col items-center mt-5 pt-5 border-t border-gray-100 animate-fade-in">
+          <h3 class="text-neutral-black font-extrabold text-[15px]">Escanea este código en el lector</h3>
+          <p class="text-gray-500 text-xs text-center mt-1">Muéstralo al conductor al abordar el vehículo</p>
+          
+          <div class="w-[220px] h-[220px] bg-white rounded-[20px] border-2 border-brand-gold/50 p-4 mt-5 flex items-center justify-center">
+            <span class="material-icons text-[160px] text-neutral-black">qr_code_2</span>
+          </div>
+
+          <div class="bg-neutral-black rounded-[10px] px-4 py-2 mt-4 flex items-center gap-2">
+            <span class="material-icons text-brand-gold text-sm">confirmation_number</span>
+            <span class="text-white font-bold text-xs tracking-wide">Tiquete #{{ ticket.id }}</span>
+          </div>
+          <p class="text-gray-400 text-[11px] mt-2">Válido solo para el viaje y fecha indicados</p>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="selectedTab === 1">
+      <div class="w-full h-full flex flex-col items-center justify-center p-8">
+        <span class="material-icons text-8xl text-gray-300">history</span>
+        <h2 class="text-neutral-black font-bold text-lg mt-4">Sin historial</h2>
+        <p class="text-gray-500 text-center text-sm mt-1">No hay viajes pasados</p>
+      </div>
+    </ng-container>
+
+  </div>
+</div>
+
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+</style>
