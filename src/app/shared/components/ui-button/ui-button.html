@@ -1,1 +1,13 @@
-<p>ui-button works!</p>
+<button 
+  (click)="onClick()"
+  [disabled]="disabled"
+  class="w-full h-14 rounded-2xl border font-extrabold text-base flex items-center justify-center gap-2 transition-all duration-300"
+  [ngClass]="{
+    'bg-brand-gold/15 border-brand-gold text-brand-gold hover:bg-brand-gold/25': isPrimary && !disabled,
+    'bg-white/5 border-brand-gold/40 text-brand-gold hover:bg-white/10': !isPrimary && !disabled,
+    'bg-neutral-charcoal border-neutral-charcoal text-gray-500 cursor-not-allowed': disabled
+  }"
+>
+  <span *ngIf="icon" class="material-icons text-lg">{{ icon }}</span>
+  <span>{{ text }}</span>
+</button>
