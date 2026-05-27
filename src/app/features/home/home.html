@@ -9,8 +9,9 @@
     
     <div class="flex items-center gap-2">
       <!-- NFC Button -->
-      <button (click)="navigateTo('/nfc')" class="w-9 h-9 rounded-full bg-neutral-black flex items-center justify-center shadow-sm active:scale-95 transition-transform">
-        <span class="material-icons text-brand-gold text-[20px]">contactless</span>
+      <button (click)="navigateTo('/nfc')" class="h-9 px-3 rounded-full bg-neutral-black flex items-center justify-center shadow-sm active:scale-95 transition-transform gap-1.5 border border-brand-gold/30">
+        <span class="material-icons text-brand-gold text-[18px] animate-pulse">contactless</span>
+        <span class="text-brand-gold font-bold text-[10px] tracking-wider">NFC</span>
       </button>
       
       <!-- Gold Badge -->

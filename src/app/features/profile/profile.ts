@@ -34,4 +34,8 @@ export class Profile {
   logout() {
     this.router.navigate(['/welcome']);
   }
+
+  handleItemClick(item: any) {
+    alert(`Entrando a la configuración de: ${item.title}`);
+  }
 }
