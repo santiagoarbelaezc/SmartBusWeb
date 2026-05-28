@@ -22,8 +22,9 @@ export class Payment {
 
   selectedMethodIndex = 0;
   isProcessing = false;
+  isSuccess = false;
 
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
   navigateBack() {
     this.router.navigate(['/seat-selection']);
@@ -37,7 +38,7 @@ export class Payment {
     this.isProcessing = true;
     setTimeout(() => {
       this.isProcessing = false;
-      this.router.navigate(['/tickets']); // Simulate success
+      this.isSuccess = true;
     }, 2000);
   }
 }

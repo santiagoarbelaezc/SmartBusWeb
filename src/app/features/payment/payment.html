@@ -8,74 +8,113 @@
     <span class="text-white font-medium text-xl">Pago</span>
   </div>
 
-  <div class="flex-1 overflow-y-auto px-6 pb-28">
-    <div class="h-4"></div>
-    
-    <h2 class="text-white font-extrabold text-[22px] leading-tight">
-      ¡Casi listo para tu próximo<br>destino!
-    </h2>
-    
-    <div class="h-6"></div>
+  <ng-container *ngIf="!isSuccess">
+    <div class="flex-1 overflow-y-auto px-6 pb-28">
+      <div class="h-4"></div>
+      
+      <h2 class="text-white font-extrabold text-[22px] leading-tight">
+        ¡Casi listo para tu próximo<br>destino!
+      </h2>
+      
+      <div class="h-6"></div>
 
-    <!-- Summary Card -->
-    <div class="w-full bg-[#1A1A1A] rounded-2xl p-5 shadow-lg border border-white/5">
-      <span class="text-white/60 text-[11px] font-bold tracking-wide uppercase">Resumen del viaje</span>
-      <div class="h-2"></div>
-      <div class="flex justify-between items-center">
-        <span class="text-white font-bold text-lg">{{ route }}</span>
-        <span class="text-white font-bold text-xl">{{ total }}</span>
-      </div>
-      <span class="text-white/40 text-xs mt-1">{{ date }} • Asiento {{ seat }}</span>
-    </div>
-
-    <div class="h-8"></div>
-
-    <!-- Payment Methods -->
-    <h3 class="text-white font-bold text-sm mb-4">Selecciona un método de pago</h3>
-    
-    <div class="flex flex-col gap-3">
-      <div *ngFor="let method of methods; let i = index" 
-           (click)="selectMethod(i)"
-           class="w-full rounded-2xl p-4 flex items-center cursor-pointer transition-colors border"
-           [ngClass]="selectedMethodIndex === i ? 'bg-[#1A1A1A] border-white/20' : 'bg-[#1A1A1A] border-transparent'">
-        
-        <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-          <span class="material-icons" [ngClass]="selectedMethodIndex === i ? 'text-white' : 'text-white/40'">{{ method.icon }}</span>
+      <!-- Summary Card -->
+      <div class="w-full bg-[#1A1A1A] rounded-2xl p-5 shadow-lg border border-white/5">
+        <span class="text-white/60 text-[11px] font-bold tracking-wide uppercase">Resumen del viaje</span>
+        <div class="h-2"></div>
+        <div class="flex justify-between items-center">
+          <span class="text-white font-bold text-lg">{{ route }}</span>
+          <span class="text-white font-bold text-xl">{{ total }}</span>
         </div>
-        
-        <div class="w-4"></div>
-        
-        <span class="flex-1 text-sm" [ngClass]="selectedMethodIndex === i ? 'text-white font-bold' : 'text-white/70 font-medium'">
-          {{ method.title }}
+        <span class="text-white/40 text-xs mt-1">{{ date }} • Asiento {{ seat }}</span>
+      </div>
+
+      <div class="h-8"></div>
+
+      <!-- Payment Methods -->
+      <h3 class="text-white font-bold text-sm mb-4">Selecciona un método de pago</h3>
+      
+      <div class="flex flex-col gap-3">
+        <div *ngFor="let method of methods; let i = index" 
+             (click)="selectMethod(i)"
+             class="w-full rounded-2xl p-4 flex items-center cursor-pointer transition-colors border"
+             [ngClass]="selectedMethodIndex === i ? 'bg-[#1A1A1A] border-white/20' : 'bg-[#1A1A1A] border-transparent'">
+          
+          <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
+            <span class="material-icons" [ngClass]="selectedMethodIndex === i ? 'text-white' : 'text-white/40'">{{ method.icon }}</span>
+          </div>
+          
+          <div class="w-4"></div>
+          
+          <span class="flex-1 text-sm" [ngClass]="selectedMethodIndex === i ? 'text-white font-bold' : 'text-white/70 font-medium'">
+            {{ method.title }}
+          </span>
+          
+          <span *ngIf="selectedMethodIndex === i" class="material-icons text-white text-[22px]">check_circle</span>
+        </div>
+      </div>
+
+      <div class="h-8"></div>
+
+      <!-- Security Note -->
+      <div class="w-full bg-[#1A1A1A]/10 border border-white/20/20 rounded-xl p-4 flex items-center">
+        <span class="material-icons text-white text-base shrink-0">lock</span>
+        <div class="w-3"></div>
+        <span class="text-white/80 text-xs font-medium leading-relaxed">
+          Tu pago está protegido con encriptación de grado bancario
         </span>
-        
-        <span *ngIf="selectedMethodIndex === i" class="material-icons text-white text-[22px]">check_circle</span>
       </div>
     </div>
 
-    <div class="h-8"></div>
-
-    <!-- Security Note -->
-    <div class="w-full bg-[#1A1A1A]/10 border border-white/20/20 rounded-xl p-4 flex items-center">
-      <span class="material-icons text-white text-base shrink-0">lock</span>
-      <div class="w-3"></div>
-      <span class="text-white/80 text-xs font-medium leading-relaxed">
-        Tu pago está protegido con encriptación de grado bancario
-      </span>
+    <!-- Bottom Bar -->
+    <div class="absolute bottom-0 w-full bg-[#0A0A0A] px-6 pt-4 pb-safe">
+      <button (click)="pay()" 
+              class="w-full h-[52px] bg-brand-accent rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-accent/30 active:scale-95 transition-transform relative overflow-hidden">
+        <span class="text-black font-extrabold text-base">Pagar {{ total }}</span>
+      </button>
     </div>
-  </div>
-
-  <!-- Bottom Bar -->
-  <div class="absolute bottom-0 w-full bg-[#0A0A0A] px-6 pt-4 pb-safe">
-    <button (click)="pay()" 
-            class="w-full h-[52px] bg-brand-accent rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-accent/30 active:scale-95 transition-transform relative overflow-hidden">
-      <span class="text-black font-extrabold text-base">Pagar {{ total }}</span>
-    </button>
-  </div>
+  </ng-container>
 
   <!-- Loading Overlay -->
   <div *ngIf="isProcessing" class="absolute inset-0 bg-[#0A0A0A]/80 backdrop-blur-md z-50 flex flex-col items-center justify-center">
     <div class="w-16 h-16 rounded-full border-4 border-white/10 border-t-brand-primary animate-spin"></div>
     <span class="text-white font-bold mt-4">Procesando pago...</span>
+  </div>
+
+  <!-- Success Screen -->
+  <div *ngIf="isSuccess" class="absolute inset-0 bg-[#0A0A0A] z-50 flex flex-col items-center justify-center px-6 animate-fade-in">
+    <!-- Success Icon -->
+    <div class="w-32 h-32 rounded-full bg-green-500/10 flex items-center justify-center mb-8 relative">
+      <div class="absolute inset-0 rounded-full border-[3px] border-green-500/30 animate-ping"></div>
+      <span class="material-icons text-green-500 text-[64px]">check_circle</span>
+    </div>
+    
+    <h2 class="text-white font-black text-3xl text-center mb-3">¡Pago Exitoso!</h2>
+    <p class="text-white/60 text-center text-sm mb-10">Tu tiquete ha sido generado correctamente y ya se encuentra en tu billetera.</p>
+
+    <!-- Ticket Summary -->
+    <div class="w-full bg-[#1A1A1A] rounded-3xl p-6 border border-white/10 mb-10 relative overflow-hidden">
+      <!-- Barcode decoration -->
+      <div class="absolute right-[-20px] top-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+        <span class="material-icons text-[140px]">qr_code_2</span>
+      </div>
+      
+      <div class="flex justify-between items-start mb-4 relative z-10">
+        <span class="text-white font-black text-xl">{{ route }}</span>
+        <span class="bg-brand-accent/20 text-brand-accent px-2 py-1 rounded text-[10px] font-bold">CONFIRMADO</span>
+      </div>
+      <div class="flex flex-col relative z-10">
+        <span class="text-white/50 text-xs">Silla asignada</span>
+        <span class="text-white font-bold text-3xl">{{ seat }}</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <button (click)="router.navigate(['/tickets'])" class="w-full h-[52px] bg-brand-accent rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-brand-accent/30 active:scale-95 transition-transform">
+      <span class="text-black font-extrabold text-[15px]">Ver mis tiquetes</span>
+    </button>
+    <button (click)="router.navigate(['/home'])" class="w-full h-[52px] bg-white/5 rounded-2xl flex items-center justify-center active:scale-95 transition-transform border border-white/10">
+      <span class="text-white font-bold text-[15px]">Volver al inicio</span>
+    </button>
   </div>
 </div>
