@@ -15,8 +15,8 @@ export class MainLayout {
   navItems = [
     { route: '/home', icon: 'home', label: 'Inicio' },
     { route: '/search', icon: 'search', label: 'Buscar' },
+    { route: '/nfc', icon: 'contactless', label: 'NFC', isFab: true },
     { route: '/tickets', icon: 'confirmation_number', label: 'Tiquetes', badge: 2 },
-    { route: '/points', icon: 'stars', label: 'Puntos' },
     { route: '/profile', icon: 'person', label: 'Perfil' }
   ];
 
