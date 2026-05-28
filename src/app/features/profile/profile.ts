@@ -16,6 +16,7 @@ export class Profile {
   totalPoints = 4250;
 
   accountItems = [
+    { icon: 'workspace_premium', bgColor: 'bg-[#F57F17]', title: 'Mis Puntos', subtitle: 'Consulta tu saldo y beneficios', route: '/tickets', state: { tab: 'points' } },
     { icon: 'language', bgColor: 'bg-[#0D47A1]', title: 'Idioma', subtitle: 'Español', route: '/profile/language' },
     { icon: 'light_mode', bgColor: 'bg-[#FFB300]', title: 'Apariencia', subtitle: 'Claro', route: '/profile/appearance' },
     { icon: 'credit_card', bgColor: 'bg-[#1B5E20]', title: 'Métodos de pago', subtitle: 'Administra tus tarjetas', route: '/profile/payment-methods' },
@@ -37,7 +38,11 @@ export class Profile {
 
   handleItemClick(item: any) {
     if (item.route) {
-      this.router.navigate([item.route]);
+      if (item.state) {
+        this.router.navigate([item.route], { state: item.state });
+      } else {
+        this.router.navigate([item.route]);
+      }
     }
   }
 }
