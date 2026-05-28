@@ -1,0 +1,14 @@
+{
+  "name": "SmartBusWeb",
+  "short_name": "SmartBusWeb",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+    {
+      "src": "assets/logo-app.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
