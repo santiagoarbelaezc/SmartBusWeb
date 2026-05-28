@@ -1,4 +1,4 @@
-<div class="w-full h-full bg-[#0A0A0A] flex flex-col overflow-hidden relative">
+<div class="w-full h-screen bg-[#0A0A0A] flex flex-col overflow-hidden relative">
   
   <!-- Top App Bar -->
   <div class="w-full pt-10 pb-4 px-4 flex items-center shrink-0">
@@ -82,7 +82,7 @@
   </div>
 
   <!-- Success Screen -->
-  <div *ngIf="isSuccess" class="absolute inset-0 bg-[#0A0A0A] z-50 flex flex-col items-center justify-center px-6 animate-fade-in">
+  <div *ngIf="isSuccess" class="fixed inset-0 bg-[#0A0A0A] z-50 flex flex-col items-center justify-center px-6 animate-fade-in">
     <!-- Success Icon -->
     <div class="w-32 h-32 rounded-full bg-green-500/10 flex items-center justify-center mb-8 relative">
       <div class="absolute inset-0 rounded-full border-[3px] border-green-500/30 animate-ping"></div>

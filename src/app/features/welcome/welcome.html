@@ -10,7 +10,7 @@
       <span class="text-white text-6xl font-black tracking-tighter">SB</span>
     </div>
 
-    <h1 class="text-brand-primary text-5xl font-black tracking-widest text-center">SmartBus</h1>
+    <h1 class="text-white text-5xl font-black tracking-widest text-center">SmartBus</h1>
     <h2 class="text-brand-primary-light/60 text-sm tracking-[0.2em] mt-2 mb-8 font-bold">COLOMBIA</h2>
     
     <p class="text-white/70 text-base text-center leading-relaxed max-w-xs px-2 font-medium">
@@ -20,17 +20,13 @@
 
   <!-- Bottom Actions Section -->
   <div class="relative z-10 w-full max-w-md flex flex-col gap-4 mb-4">
-    <app-ui-button 
-      text="Iniciar Sesión" 
-      [isPrimary]="true" 
-      (clicked)="navigateToLogin()">
-    </app-ui-button>
+    <button (click)="navigateToLogin()" class="w-full h-14 rounded-2xl bg-brand-primary text-white font-extrabold text-[15px] shadow-lg active:scale-95 transition-transform border border-brand-primary/50">
+      Iniciar Sesión
+    </button>
 
-    <app-ui-button 
-      text="Crear Cuenta" 
-      [isPrimary]="false" 
-      (clicked)="navigateToRegister()">
-    </app-ui-button>
+    <button (click)="navigateToRegister()" class="w-full h-14 rounded-2xl bg-transparent border border-white/20 text-white font-extrabold text-[15px] hover:bg-white/5 active:scale-95 transition-all">
+      Crear Cuenta
+    </button>
 
     <div class="flex items-center my-1 w-full px-2">
       <div class="flex-grow h-px bg-white/15"></div>

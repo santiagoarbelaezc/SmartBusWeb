@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -24,7 +24,7 @@ export class Payment {
   isProcessing = false;
   isSuccess = false;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private cdr: ChangeDetectorRef) {}
 
   navigateBack() {
     this.router.navigate(['/seat-selection']);
@@ -35,10 +35,13 @@ export class Payment {
   }
 
   pay() {
+    if (this.isProcessing) return;
     this.isProcessing = true;
+    
     setTimeout(() => {
       this.isProcessing = false;
       this.isSuccess = true;
+      this.cdr.detectChanges();
     }, 2000);
   }
 }
