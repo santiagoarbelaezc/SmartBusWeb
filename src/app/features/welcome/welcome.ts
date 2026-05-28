@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { UiButton } from '../../shared/components/ui-button/ui-button';
+
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [CommonModule, UiButton],
+  imports: [CommonModule],
   templateUrl: './welcome.html'
 })
 export class Welcome {
