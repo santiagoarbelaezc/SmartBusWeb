@@ -12,11 +12,11 @@ export class Home {
   userName = 'Santiago Arbeláez';
   greeting = 'Buenos días ☀️';
 
-  quickAccess = [
+  quickAccess: any[] = [
     { icon: 'search', label: 'Buscar', route: '/search' },
     { icon: 'confirmation_number', label: 'Tiquetes', route: '/tickets' },
     { icon: 'my_location', label: 'Rastreo', route: '/tracking' },
-    { icon: 'card_giftcard', label: 'Puntos', route: '/points' }
+    { icon: 'card_giftcard', label: 'Puntos', route: '/tickets', state: { tab: 'points' } }
   ];
 
   stats = [
@@ -53,7 +53,11 @@ export class Home {
     else if (hour >= 18) this.greeting = 'Buenas noches 🌙';
   }
 
-  navigateTo(route: string) {
-    this.router.navigate([route]);
+  navigateTo(route: string, state?: any) {
+    if (state) {
+      this.router.navigate([route], { state });
+    } else {
+      this.router.navigate([route]);
+    }
   }
 }
